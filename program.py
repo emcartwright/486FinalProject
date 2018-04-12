@@ -107,15 +107,8 @@ def main(argv):
 
     train_labels = range(0,len(song_dict))
 
-    #print(test_dict)
-    #print(song_dict)
-    print("HI")
-    print(test_dict)
-
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict,train_labels)
 
-    print("YO")
-    print(test_dict)
 
     nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict)
 
