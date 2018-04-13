@@ -13,9 +13,37 @@ from collections import Counter
 
 
 
-def train_NN(train_queries, df_dict, N, song_dict):
-    for query_dict in train_queries:
-        five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
+def train_NN(df_dict, N, song_tfidf_dict, label_dict):
+
+    #print(song_tfidf_dict)
+    #exit(0)
+    #X_train = dict(d.items()[len(d)/2:])
+    #X_test = dict(d.items()[:len(d)/2])
+    X_train = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 0}
+    X_test = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 1}
+    #print(X_train)
+    #print(X_test)
+    #exit(0)
+    #feature_matrix,labels = svm.gen_feature_matrix(song_tfidf_dict,label_dict)
+
+    #split_idx = int(len(feature_matrix)*.70)
+    #split_idx = int(len(feature_matrix)*1)
+
+
+    #X_train,y_train = feature_matrix[:split_idx],labels[:split_idx]
+    #X_test, y_true = feature_matrix[split_idx:],labels[split_idx:]
+
+
+    correct = 0.
+    total = 0.
+    for query_dict in X_test:
+        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 5)
+        print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
+        if(solution[0] == label_dict[query_dict]):
+            correct += 1
+        total += 1
+    print(correct/total)
+        #five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
 
 
 
@@ -55,7 +83,7 @@ def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
 
     print(Counter(new_counter_dict).most_common(1))
     # These are the nearest neighbors
-    return Counter(new_counter_dict).most_common(1)[0]
+    return (Counter(new_counter_dict).most_common(1)[0])
 
 
 
@@ -145,18 +173,17 @@ def main(argv):
 
     #print(label_dict)
 
-    test_dict = song_dict.pop('851082')
+    #test_dict = song_dict.pop('851082')
 
     #delete me
     #labels = np.random.randint(1,4,len(song_dict))
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
 
-
-    nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
-
     svm.svm_main(song_tfidf_dict,label_dict)
 
+    train_NN(df_dict, N, song_tfidf_dict, label_dict)
+    #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
     #for line in open(file).read():
