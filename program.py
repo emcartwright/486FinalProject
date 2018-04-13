@@ -7,7 +7,18 @@ from os.path import abspath
 import time
 import copy
 import math
+import svm
+
 from collections import Counter
+
+
+
+def train_NN(train_queries, df_dict, N, song_dict):
+    for query_dict in train_queries:
+        five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
+
+
+
 
 def nearestNeighbor(query_dict, df_dict, N, song_dict):
     for tup in query_dict:
@@ -31,6 +42,9 @@ def nearestNeighbor(query_dict, df_dict, N, song_dict):
     print(dict(Counter(tfidf_vals).most_common(5)))
     print(Counter(tfidf_vals).most_common(5))
     # These are the nearest neighbors
+    return dict(Counter(tfidf_vals).most_common(5))
+
+
 
 def tfidf(tf,df,N,weighter):
 
@@ -118,17 +132,18 @@ def main(argv):
 
     test_dict = song_dict.pop('851082')
 
-    train_labels = range(0,len(song_dict))
+    labels = np.random.randint(1,4,len(song_dict))
 
-    df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict,train_labels)
+    df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict,labels)
 
 
     nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict)
 
+    svm.svm_main(song_tfidf_dict,labels)
+
+
 
     #for line in open(file).read():
-
-
 
 
 
