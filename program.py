@@ -20,7 +20,7 @@ def train_NN(train_queries, df_dict, N, song_dict):
 
 
 
-def nearestNeighbor(query_dict, df_dict, N, song_dict):
+def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
     for tup in query_dict:
         tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
 
@@ -39,10 +39,23 @@ def nearestNeighbor(query_dict, df_dict, N, song_dict):
                 curVal += query_dict[counter][1] * tup[1]
         tfidf_vals[song] = curVal
 
-    print(dict(Counter(tfidf_vals).most_common(5)))
-    print(Counter(tfidf_vals).most_common(5))
+    print(dict(Counter(tfidf_vals).most_common(k)))
+    best_vals = Counter(tfidf_vals).most_common(k)
+
+    new_counter_dict = {}
+    curVal = 2000
+    for val in best_vals:
+        print(val[0])
+        #exit(1)
+        if(label_dict[val[0]] in new_counter_dict):
+            new_counter_dict[label_dict[val[0]]] += curVal
+        else:
+            new_counter_dict[label_dict[val[0]]] = curVal
+        curVal -=1
+
+    print(Counter(new_counter_dict).most_common(1))
     # These are the nearest neighbors
-    return dict(Counter(tfidf_vals).most_common(5))
+    return Counter(new_counter_dict).most_common(1)[0]
 
 
 
@@ -137,7 +150,7 @@ def main(argv):
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict,labels)
 
 
-    nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict)
+    nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
     svm.svm_main(song_tfidf_dict,labels)
 
