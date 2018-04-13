@@ -29,6 +29,7 @@ def nearestNeighbor(query_dict, df_dict, N, song_dict):
         tfidf_vals[song] = curVal
 
     print(dict(Counter(tfidf_vals).most_common(5)))
+    print(Counter(tfidf_vals).most_common(5))
     # These are the nearest neighbors
 
 def tfidf(tf,df,N,weighter):
@@ -82,6 +83,15 @@ def main(argv):
 
     filename = argv[1]
 
+    # Create year dictionary
+    id_year_filename = argv[2]
+    id_year = open(id_year_filename, "r")
+    year_dict = {}
+    for line in id_year:
+        values = line.split()
+        year_dict[values[0]] = values[1]
+
+
     print(open(abspath(filename)).readlines()[0])
 
     mxm_data = open(abspath(filename)).readlines()
@@ -89,6 +99,7 @@ def main(argv):
     words = set(mxm_data[0].split(','))
 
     song_dict = {}
+    label_dict = {}
     for line in mxm_data[1:]:
         line = line.split(',')
         line[-1] = line[-1][:-1]
@@ -98,12 +109,14 @@ def main(argv):
         # for line_data in non_float_data:
         #   print(line_data)
         #   (float(line_data[0]),float(line_data[1]))
-        song_dict[line[1]] = data
+        if line[1] in year_dict:
+            label_dict[line[1]] = year_dict[line[1]][0:-1]
+            song_dict[line[1]] = data
+        #label_dict[line[1]] = year_dict[line[0]]
 
+    print(label_dict)
 
-
-
-    test_dict = song_dict.pop('4168849')
+    test_dict = song_dict.pop('851082')
 
     train_labels = range(0,len(song_dict))
 
