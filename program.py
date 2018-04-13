@@ -7,6 +7,8 @@ from os.path import abspath
 import time
 import copy
 import math
+import svm
+
 from collections import Counter
 
 def nearestNeighbor(query_dict, df_dict, N, song_dict):
@@ -105,17 +107,18 @@ def main(argv):
 
     test_dict = song_dict.pop('4168849')
 
-    train_labels = range(0,len(song_dict))
+    labels = np.random.randint(1,4,len(song_dict))
 
-    df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict,train_labels)
+    df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict,labels)
 
 
     nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict)
 
+    svm.svm_main(song_tfidf_dict,labels)
+
+
 
     #for line in open(file).read():
-
-
 
 
 
