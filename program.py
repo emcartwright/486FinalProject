@@ -96,9 +96,11 @@ def train_tfidf(words,song_dict, train_labels):
 def main(argv):
 
     filename = argv[1]
+    #print(filename)
 
     # Create year dictionary
     id_year_filename = argv[2]
+    print(id_year_filename)
     id_year = open(id_year_filename, "r")
     year_dict = {}
     for line in id_year:
@@ -132,6 +134,7 @@ def main(argv):
 
     test_dict = song_dict.pop('851082')
 
+    #delete me
     labels = np.random.randint(1,4,len(song_dict))
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict,labels)
@@ -139,7 +142,7 @@ def main(argv):
 
     nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict)
 
-    svm.svm_main(song_tfidf_dict,labels)
+    svm.svm_main(song_tfidf_dict,label_dict)
 
 
 
