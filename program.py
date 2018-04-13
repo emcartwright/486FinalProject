@@ -11,6 +11,15 @@ import svm
 
 from collections import Counter
 
+
+
+def train_NN(train_queries, df_dict, N, song_dict):
+    for query_dict in train_queries:
+        five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
+
+
+
+
 def nearestNeighbor(query_dict, df_dict, N, song_dict):
     for tup in query_dict:
         tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
@@ -30,8 +39,11 @@ def nearestNeighbor(query_dict, df_dict, N, song_dict):
                 curVal += query_dict[counter][1] * tup[1]
         tfidf_vals[song] = curVal
 
-    print(dict(Counter(tfidf_vals).most_common(5)))
+    #print(dict(Counter(tfidf_vals).most_common(5)))
     # These are the nearest neighbors
+    return dict(Counter(tfidf_vals).most_common(5))
+
+
 
 def tfidf(tf,df,N,weighter):
 
