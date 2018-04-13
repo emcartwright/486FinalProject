@@ -17,6 +17,8 @@ def train_NN(df_dict, N, song_tfidf_dict, label_dict):
 
     #print(song_tfidf_dict)
     #exit(0)
+    #X_train = dict(d.items()[len(d)/2:])
+    #X_test = dict(d.items()[:len(d)/2])
     X_train = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 0}
     X_test = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 1}
     #print(X_train)
@@ -34,8 +36,8 @@ def train_NN(df_dict, N, song_tfidf_dict, label_dict):
 
     correct = 0.
     total = 0.
-    for query_dict in X_train:
-        solution = nearestNeighbor(X_train[query_dict], df_dict, N, X_train, label_dict, 5)
+    for query_dict in X_test:
+        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 5)
         print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
         if(solution[0] == label_dict[query_dict]):
             correct += 1
