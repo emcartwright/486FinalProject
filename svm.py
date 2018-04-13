@@ -51,10 +51,10 @@ def svm_main(song_score_dict,label_dict):
     classifier = OneVsRestClassifier(SVC(kernel='linear'))
     classifier.fit(X_train,y_train)
     y_pred = classifier.predict(X_test)
-    print(y_pred)
-    print(y_true)
+    print("y_pred: ", y_pred)
+    print("y_true: ", y_true)
     accuracy = accuracy_score(y_true,y_pred)
-    print(accuracy)
+    print("svm accuracy: ",accuracy)
 
 
     #calculate accuracy or something
