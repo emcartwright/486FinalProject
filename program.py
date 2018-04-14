@@ -37,7 +37,6 @@ def train_NN(df_dict, N, song_tfidf_dict, label_dict):
     correct = 0.
     total = 0.
     for query_dict in X_test:
-<<<<<<< HEAD
         solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 9)
         print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
         if(solution[0] == label_dict[query_dict]):
@@ -46,14 +45,6 @@ def train_NN(df_dict, N, song_tfidf_dict, label_dict):
         if(total >= 500):
             break
     print(correct/total)
-=======
-        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 5)
-        #print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
-        if(solution[0] == label_dict[query_dict]):
-            correct += 1
-        total += 1
-    #print(correct/total)
->>>>>>> 6bb3501be5820c5fb04b1adbfc08920837ea420f
         #five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
 
 def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
@@ -240,13 +231,9 @@ def main(argv):
     cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
     #svm.svm_main(song_tfidf_dict,label_dict)
 
-<<<<<<< HEAD
     #svm.svm_main(song_tfidf_dict,label_dict)
 
     train_NN(df_dict, N, song_tfidf_dict, label_dict)
-=======
-    #train_NN(df_dict, N, song_tfidf_dict, label_dict)
->>>>>>> 6bb3501be5820c5fb04b1adbfc08920837ea420f
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
