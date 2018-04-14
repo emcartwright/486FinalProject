@@ -37,11 +37,13 @@ def train_NN(df_dict, N, song_tfidf_dict, label_dict):
     correct = 0.
     total = 0.
     for query_dict in X_test:
-        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 5)
+        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 9)
         print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
         if(solution[0] == label_dict[query_dict]):
             correct += 1
         total += 1
+        if(total >= 500):
+            break
     print(correct/total)
         #five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
 
@@ -103,7 +105,7 @@ def tfidf(tf,df,N,weighter):
 
 def train_tfidf(words,song_dict):
 
-    list1 = [(x,0) for x in range(0,5000)]
+    list1 = [(x,0) for x in range(0,5001)]
     #print(list1)
     df_dict = dict(list1)
     word_to_docs = dict(list1)
@@ -180,7 +182,7 @@ def main(argv):
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
 
-    svm.svm_main(song_tfidf_dict,label_dict)
+    #svm.svm_main(song_tfidf_dict,label_dict)
 
     train_NN(df_dict, N, song_tfidf_dict, label_dict)
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
