@@ -7,7 +7,7 @@ from os.path import abspath
 import time
 import copy
 import math
-import svm
+#import svm
 
 from collections import Counter
 
@@ -37,15 +37,63 @@ def train_NN(df_dict, N, song_tfidf_dict, label_dict):
     correct = 0.
     total = 0.
     for query_dict in X_test:
-        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 5)
+        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 9)
         print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
         if(solution[0] == label_dict[query_dict]):
             correct += 1
         total += 1
+        if(total >= 500):
+            break
     print(correct/total)
         #five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
 
+def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
+    years_tfidf = dict.fromkeys(set(year_dict.values()))
+    years_count = dict.fromkeys(set(year_dict.values()))
 
+    for year in years_tfidf:
+        years_tfidf[year] = []
+
+    for year in years_count:
+        years_count[year] = 0
+
+    for song in song_dict:
+        for tup in song_dict[song]:
+            year = year_dict[song]
+            idx = []
+            if years_tfidf[year]:
+                idx = [x for x, y in enumerate(years_tfidf[year]) if y[0] == tup[0]]
+            if not idx:
+                years_tfidf[year].append(tup)
+            else:
+                years_tfidf[year][idx[0]][1] += tup[1]
+            years_count[year] += 1
+
+    for year in years_tfidf:
+        if years_count[year] > 0:
+            for tup in years_tfidf[year]:
+                tup[1] = tup[1] / years_count[year]
+
+    for tup in query_dict:
+        tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
+
+    cosines = dict.fromkeys(set(year_dict.values()))
+    cosines = dict.fromkeys(cosines, 0)
+    querySum = sum([i[1] ** 2 for i in query_dict])
+
+    for year in cosines:
+        yearSum = sum([i[1] ** 2 for i in years_tfidf[year]])
+        dotProd = 0
+
+        for i in query_dict:
+            idx = [x for x, y in enumerate(years_tfidf[year]) if y[0] == i[0]]
+            if idx:
+                dotProd += i[1] * years_tfidf[year][idx[0]][1]
+
+        if yearSum:
+            cosines[year] = dotProd / (math.sqrt(querySum * yearSum))
+
+    return max(cosines, key=cosines.get)
 
 
 def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
@@ -81,7 +129,7 @@ def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
             new_counter_dict[label_dict[val[0]]] = curVal
         curVal -=1
 
-    print(Counter(new_counter_dict).most_common(1))
+    #print(Counter(new_counter_dict).most_common(1))
     # These are the nearest neighbors
     return (Counter(new_counter_dict).most_common(1)[0])
 
@@ -157,6 +205,7 @@ def main(argv):
 
     song_dict = {}
     label_dict = {}
+
     for line in mxm_data[1:]:
         line = line.split(',')
         line[-1] = line[-1][:-1]
@@ -173,14 +222,16 @@ def main(argv):
 
     #print(label_dict)
 
-    #test_dict = song_dict.pop('851082')
+    test_dict = song_dict.pop('851082')
 
     #delete me
     #labels = np.random.randint(1,4,len(song_dict))
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
+    cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
+    #svm.svm_main(song_tfidf_dict,label_dict)
 
-    svm.svm_main(song_tfidf_dict,label_dict)
+    #svm.svm_main(song_tfidf_dict,label_dict)
 
     #train_NN(df_dict, N, song_tfidf_dict, label_dict)
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
