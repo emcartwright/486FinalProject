@@ -97,6 +97,7 @@ def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
 
 
 def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
+    #DO_NOT_COMMIT hmmmm
     for tup in query_dict:
         tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
 
@@ -185,10 +186,12 @@ def train_tfidf(words,song_dict):
 def main(argv):
 
     filename = argv[1]
+    test_filename = argv[2]
     #print(filename)
 
     # Create year dictionary
-    id_year_filename = argv[2]
+    id_year_filename = argv[3]
+
     #print(id_year_filename)
     id_year = open(id_year_filename, "r")
     year_dict = {}
@@ -200,8 +203,10 @@ def main(argv):
     #print(open(abspath(filename)).readlines()[0])
 
     mxm_data = open(abspath(filename)).readlines()
+    test_data = open(abspath(test_filename)).readlines()
 
     words = set(mxm_data[0].split(','))
+    test_words = set(test_data[0].split(','))
 
     song_dict = {}
     label_dict = {}
@@ -218,11 +223,27 @@ def main(argv):
         if line[1] in year_dict:
             label_dict[line[1]] = year_dict[line[1]][0:-1]
             song_dict[line[1]] = data
+
+    test_label_dict = {}
+    test_song_dict = {}
+
+    for line in test_data[1:]:
+        line = line.split(',')
+        line[-1] = line[-1][:-1]
+        non_float_data = [line_data.split(':') for line_data in line[2:]]
+        #print(non_float_data[0][1])
+        data = [[int(line_data[0]),int(line_data[1])] for line_data in non_float_data]
+        # for line_data in non_float_data:
+        #   print(line_data)
+        #   (float(line_data[0]),float(line_data[1]))
+        if line[1] in year_dict:
+            test_label_dict[line[1]] = year_dict[line[1]][0:-1]
+            test_song_dict[line[1]] = data
         #label_dict[line[1]] = year_dict[line[0]]
 
     #print(label_dict)
 
-    test_dict = song_dict.pop('851082')
+    #test_dict = song_dict.pop('851082')
 
     #delete me
     #labels = np.random.randint(1,4,len(song_dict))
