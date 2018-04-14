@@ -208,6 +208,8 @@ def test_tfidf(words, song_dict, df_dict):
 
 
 def main(argv):
+    max_train = 2000
+    max_test = 500
 
     filename = argv[1]
     test_filename = argv[2]
@@ -234,8 +236,11 @@ def main(argv):
 
     song_dict = {}
     label_dict = {}
+    j = 0
 
     for line in mxm_data[1:]:
+        if j >= max_train:
+            break
         line = line.split(',')
         line[-1] = line[-1][:-1]
         non_float_data = [line_data.split(':') for line_data in line[2:]]
@@ -247,11 +252,15 @@ def main(argv):
         if line[1] in year_dict:
             label_dict[line[1]] = year_dict[line[1]][0:-1]
             song_dict[line[1]] = data
+            j += 1
 
     test_label_dict = {}
     test_song_dict = {}
+    j = 0
 
     for line in test_data[1:]:
+        if j >= max_test:
+            break
         line = line.split(',')
         line[-1] = line[-1][:-1]
         non_float_data = [line_data.split(':') for line_data in line[2:]]
@@ -263,6 +272,7 @@ def main(argv):
         if line[1] in year_dict:
             test_label_dict[line[1]] = year_dict[line[1]][0:-1]
             test_song_dict[line[1]] = data
+            j += 1
         #label_dict[line[1]] = year_dict[line[0]]
 
     #print(label_dict)
