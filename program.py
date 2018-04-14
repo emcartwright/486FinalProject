@@ -103,7 +103,7 @@ def tfidf(tf,df,N,weighter):
 
 def train_tfidf(words,song_dict):
 
-    list1 = [(x,0) for x in range(0,5000)]
+    list1 = [(x,0) for x in range(0,5001)]
     #print(list1)
     df_dict = dict(list1)
     word_to_docs = dict(list1)
@@ -182,7 +182,7 @@ def main(argv):
 
     svm.svm_main(song_tfidf_dict,label_dict)
 
-    train_NN(df_dict, N, song_tfidf_dict, label_dict)
+    #train_NN(df_dict, N, song_tfidf_dict, label_dict)
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
