@@ -283,6 +283,8 @@ def main(argv):
     #labels = np.random.randint(1,4,len(song_dict))
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
+    test_dict = test_tfidf(words, test_song_dict, df_dict)
+
     cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
     #svm.svm_main(song_tfidf_dict,label_dict)
 
