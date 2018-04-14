@@ -179,7 +179,31 @@ def train_tfidf(words,song_dict):
     #print(df_dict)
     #print(word_to_docs)
 
+def test_tfidf(words, song_dict, df_dict):
+    list1 = [(x,0) for x in range(0,5001)]
+    #print(list1)
+    #df_dict = dict(list1)
+    word_to_docs = dict(list1)
 
+    for word in word_to_docs:
+        word_to_docs[word] = []
+
+
+    for song in song_dict:
+        for tup in song_dict[song]:
+            #print(type(tup[0]))
+            #df_dict[tup[0]] +=1
+            word_to_docs[tup[0]].append(song)
+
+    song_tfidf_dict = copy.deepcopy(song_dict)
+
+    for song in song_tfidf_dict:
+        k = 0
+        for tup in song_tfidf_dict[song]:
+            tup[1] = tfidf(song_dict[song][k][1],df_dict[tup[0]],len(song_dict),'tfidf')
+            k+=1
+
+    return song_tfidf_dict
 
 
 def main(argv):
