@@ -16,7 +16,7 @@ import time
 
 def gen_feature_matrix(song_score_dict,label_dict):
 
-    feature_matrix = np.zeros((len(song_score_dict),5000))
+    feature_matrix = np.zeros((len(song_score_dict),5001))
     song_names = [name for name in song_score_dict]
     labels = [None]*len(song_names)
     
