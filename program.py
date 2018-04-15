@@ -12,40 +12,17 @@ import math
 from collections import Counter
 
 
-
-def train_NN(X_train, X_test, df_dict, N, label_dict):
-
-    #print(song_tfidf_dict)
-    #exit(0)
-    #X_train = dict(d.items()[len(d)/2:])
-    #X_test = dict(d.items()[:len(d)/2])
-    #X_train = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 0}
-    #X_test = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 1}
-    #print(X_train)
-    #print(X_test)
-    #exit(0)
-    #feature_matrix,labels = svm.gen_feature_matrix(song_tfidf_dict,label_dict)
-
-    #split_idx = int(len(feature_matrix)*.70)
-    #split_idx = int(len(feature_matrix)*1)
-
-
-    #X_train,y_train = feature_matrix[:split_idx],labels[:split_idx]
-    #X_test, y_true = feature_matrix[split_idx:],labels[split_idx:]
-
-
+def train_NN(X_train, X_test, label_dict, k):
     correct = 0.
     total = 0.
     for query_dict in X_test:
-        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 25)
+        solution = nearestNeighbor(X_test[query_dict], X_train, label_dict, k)
         print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
         if(solution[0] == label_dict[query_dict]):
             correct += 1
         total += 1
-        if(total >= 500):
-            break
     print(correct/total)
-        #five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
+    return(correct/total)
 
 def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
     years_tfidf = dict.fromkeys(set(year_dict.values()))
@@ -96,11 +73,7 @@ def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
     return max(cosines, key=cosines.get)
 
 
-def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
-    #DO_NOT_COMMIT hmmmm
-    #for tup in query_dict:
-    #   tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
-
+def nearestNeighbor(query_dict, song_dict, label_dict, k):
     tfidf_vals = {}
     for song in song_dict:
         curVal = 0
@@ -116,8 +89,11 @@ def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
                 curVal += query_dict[counter][1] * tup[1]
         tfidf_vals[song] = curVal
 
-    #print(dict(Counter(tfidf_vals).most_common(k)))
     best_vals = Counter(tfidf_vals).most_common(k)
+
+    #print(song_dict[best_vals[0][0]])
+    #print(best_vals[0][1])
+    #print(best_vals[0][0])
 
     new_counter_dict = {}
     curVal = 2000
@@ -180,36 +156,21 @@ def train_tfidf(words,song_dict):
     #print(df_dict)
     #print(word_to_docs)
 
-def test_tfidf(words, song_dict, df_dict):
-    list1 = [(x,0) for x in range(0,5001)]
-    #print(list1)
-    #df_dict = dict(list1)
-    word_to_docs = dict(list1)
-
-    for word in word_to_docs:
-        word_to_docs[word] = []
-
-
-    for song in song_dict:
-        for tup in song_dict[song]:
-            #print(type(tup[0]))
-            #df_dict[tup[0]] +=1
-            word_to_docs[tup[0]].append(song)
-
+def test_tfidf(words, song_dict, df_dict, N):
     song_tfidf_dict = copy.deepcopy(song_dict)
 
     for song in song_tfidf_dict:
         k = 0
         for tup in song_tfidf_dict[song]:
-            tup[1] = tfidf(song_dict[song][k][1],df_dict[tup[0]],len(song_dict),'tfidf')
+            tup[1] = tfidf(song_dict[song][k][1],df_dict[tup[0]],N,'tfidf')
             k+=1
 
     return song_tfidf_dict
 
 
 def main(argv):
-    max_train = 3000
-    max_test = 600
+    max_train = 2000
+    max_test = 500
 
     filename = argv[1]
     test_filename = argv[2]
@@ -283,14 +244,18 @@ def main(argv):
     #labels = np.random.randint(1,4,len(song_dict))
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
-    test_dict = test_tfidf(words, test_song_dict, df_dict)
+    test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
     #svm.svm_main(song_tfidf_dict,label_dict)
 
     #svm.svm_main(song_tfidf_dict,label_dict)
 
-    train_NN(song_tfidf_dict, test_dict, df_dict, N, label_dict)
+    k_values = [1,3,5,7,9,11,15,25]
+    accuracies = []
+    for k in k_values:
+        accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
+    print(accuracies)
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
