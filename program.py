@@ -13,14 +13,14 @@ from collections import Counter
 
 
 
-def train_NN(df_dict, N, song_tfidf_dict, label_dict):
+def train_NN(X_train, X_test, df_dict, N, label_dict):
 
     #print(song_tfidf_dict)
     #exit(0)
     #X_train = dict(d.items()[len(d)/2:])
     #X_test = dict(d.items()[:len(d)/2])
-    X_train = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 0}
-    X_test = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 1}
+    #X_train = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 0}
+    #X_test = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 1}
     #print(X_train)
     #print(X_test)
     #exit(0)
@@ -37,7 +37,7 @@ def train_NN(df_dict, N, song_tfidf_dict, label_dict):
     correct = 0.
     total = 0.
     for query_dict in X_test:
-        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 9)
+        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 25)
         print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
         if(solution[0] == label_dict[query_dict]):
             correct += 1
@@ -98,8 +98,8 @@ def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
 
 def nearestNeighbor(query_dict, df_dict, N, song_dict, label_dict, k):
     #DO_NOT_COMMIT hmmmm
-    for tup in query_dict:
-        tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
+    #for tup in query_dict:
+    #   tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
 
     tfidf_vals = {}
     for song in song_dict:
@@ -208,8 +208,8 @@ def test_tfidf(words, song_dict, df_dict):
 
 
 def main(argv):
-    max_train = 2000
-    max_test = 500
+    max_train = 3000
+    max_test = 600
 
     filename = argv[1]
     test_filename = argv[2]
@@ -270,7 +270,7 @@ def main(argv):
         #   print(line_data)
         #   (float(line_data[0]),float(line_data[1]))
         if line[1] in year_dict:
-            test_label_dict[line[1]] = year_dict[line[1]][0:-1]
+            label_dict[line[1]] = year_dict[line[1]][0:-1]
             test_song_dict[line[1]] = data
             j += 1
         #label_dict[line[1]] = year_dict[line[0]]
@@ -286,11 +286,11 @@ def main(argv):
     test_dict = test_tfidf(words, test_song_dict, df_dict)
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
+
     svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
 
-    #svm.svm_main(song_tfidf_dict,label_dict)
 
-    #train_NN(df_dict, N, song_tfidf_dict, label_dict)
+    train_NN(song_tfidf_dict, test_dict, df_dict, N, label_dict)
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
