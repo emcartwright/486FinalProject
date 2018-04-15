@@ -7,7 +7,7 @@ from os.path import abspath
 import time
 import copy
 import math
-#import svm
+import svm
 
 from collections import Counter
 
@@ -247,9 +247,9 @@ def main(argv):
     test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
-    #svm.svm_main(song_tfidf_dict,label_dict)
 
-    #svm.svm_main(song_tfidf_dict,label_dict)
+    svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
+
 
     k_values = [1,3,5,7,9,11,15,25]
     accuracies = []
