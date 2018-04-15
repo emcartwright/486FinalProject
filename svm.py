@@ -74,13 +74,13 @@ def svm_main(song_score_dict,test_score_dict,label_dict,test_label_dict):
 
 def svm_diff_kernels(X_train,y_train,X_test, y_true):
 
-    # classifier = OneVsRestClassifier(SVC(kernel='linear'))
-    # classifier.fit(X_train,y_train)
-    # y_pred = classifier.predict(X_test)
-    # print("y_pred: ", y_pred)
-    # print("y_true: ", y_true)
-    # accuracy = accuracy_score(y_true,y_pred)
-    # print("linear svm accuracy: ",accuracy, "\n")
+    classifier = OneVsRestClassifier(SVC(kernel='linear'))
+    classifier.fit(X_train,y_train)
+    y_pred = classifier.predict(X_test)
+    print("y_pred: ", y_pred)
+    print("y_true: ", y_true)
+    accuracy = accuracy_score(y_true,y_pred)
+    print("linear svm accuracy: ",accuracy, "\n")
 
     #for precision on songs of 2000s
     #y_pred_2000s =[0 if decade != 2000 else 1 for decade in y_pred ]
@@ -88,15 +88,12 @@ def svm_diff_kernels(X_train,y_train,X_test, y_true):
     y_train_2000s = [0 if decade != '200' else 1 for decade in y_train ]
     #class_binary = OneVsRestClassifier(SVC(kernel='linear'))
     class_binary = SVC(kernel='linear')
-    # print(y_train_2000s)
-    # print("space\n")
-    # print(X_train)
-    # time.sleep(20)
+
     class_binary.fit(X_train,y_train_2000s)
     
-    #y_pred_2000s = class_binary.predict(X_test)
-    #accuracy = accuracy_score(y_true_2000s,y_pred_2000s)
-    #print("linear binary svm for 2000s accuracy: ", accuracy)
+    y_pred_2000s = class_binary.predict(X_test)
+    accuracy = accuracy_score(y_true_2000s,y_pred_2000s)
+    print("linear binary svm for 2000s accuracy: ", accuracy)
     
     y_scores = class_binary.decision_function(X_test)
     precision, recall, thresholds = precision_recall_curve(y_true_2000s, y_scores)
@@ -120,21 +117,21 @@ def svm_diff_kernels(X_train,y_train,X_test, y_true):
     plt.show()
     plt.savefig('Precision_Recall.png')
 
-    # classifier = OneVsRestClassifier(SVC(kernel='rbf'))
-    # classifier.fit(X_train,y_train)
-    # y_pred = classifier.predict(X_test)
-    # print("y_pred: ", y_pred)
-    # print("y_true: ", y_true)
-    # accuracy = accuracy_score(y_true,y_pred)
-    # print("rbf svm accuracy: ",accuracy, "\n")
+    classifier = OneVsRestClassifier(SVC(kernel='rbf'))
+    classifier.fit(X_train,y_train)
+    y_pred = classifier.predict(X_test)
+    print("rbf y_pred: ", y_pred)
+    print("y_true: ", y_true)
+    accuracy = accuracy_score(y_true,y_pred)
+    print("rbf svm accuracy: ",accuracy, "\n")
 
-    # classifier = OneVsRestClassifier(SVC(kernel='poly'))
-    # classifier.fit(X_train,y_train)
-    # y_pred = classifier.predict(X_test)
-    # print("y_pred: ", y_pred)
-    # print("y_true: ", y_true)
-    # accuracy = accuracy_score(y_true,y_pred)
-    # print("polynomial svm accuracy: ",accuracy, "\n")
+    classifier = OneVsRestClassifier(SVC(kernel='poly'))
+    classifier.fit(X_train,y_train)
+    y_pred = classifier.predict(X_test)
+    print("poly y_pred: ", y_pred)
+    print("y_true: ", y_true)
+    accuracy = accuracy_score(y_true,y_pred)
+    print("polynomial svm accuracy: ",accuracy, "\n")
 
 
 
