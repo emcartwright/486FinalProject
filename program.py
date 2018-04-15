@@ -7,7 +7,7 @@ from os.path import abspath
 import time
 import copy
 import math
-#import svm
+import svm
 
 from collections import Counter
 
@@ -285,8 +285,8 @@ def main(argv):
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
     test_dict = test_tfidf(words, test_song_dict, df_dict)
 
-    cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
-    #svm.svm_main(song_tfidf_dict,label_dict)
+    #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
+    svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
 
     #svm.svm_main(song_tfidf_dict,label_dict)
 
