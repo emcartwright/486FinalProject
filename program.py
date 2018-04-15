@@ -208,8 +208,8 @@ def test_tfidf(words, song_dict, df_dict):
 
 
 def main(argv):
-    max_train = 3000
-    max_test = 600
+    max_train = 2000
+    max_test = 500
 
     filename = argv[1]
     test_filename = argv[2]

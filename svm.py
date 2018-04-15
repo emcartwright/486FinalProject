@@ -28,7 +28,7 @@ def gen_feature_matrix(song_score_dict,label_dict):
     for song in song_names:
         labels[i] = label_dict[song]
         i +=1
-    print(labels)
+    #print(labels)
     #time.sleep(10)
 
     for i in range(len(song_names)):
