@@ -114,15 +114,16 @@ def nearestNeighbor(query_dict, song_dict, label_dict, k):
 
 def tfidf(tf,df,N,weighter):
 
-    if df == 0:
-        return 0
+    # if df == 0:
+    #     return 0
 
-    arg = float(N) / float(df)
-    if N == 0: return 0
-    if weighter == 'tfidf':
-        return float(tf)*math.log(arg,10)
+    # arg = float(N) / float(df)
+    # if N == 0: return 0
+    # if weighter == 'tfidf':
+    #     return float(tf)*math.log(arg,10)
 
-    return math.log(arg,10)
+    # return math.log(arg,10)
+    return tf
 
 
 
@@ -197,6 +198,10 @@ def main(argv):
 
     song_dict = {}
     label_dict = {}
+
+    # for svm
+    train_label_dict = {}
+    test_label_dict = {}
     j = 0
 
     for line in mxm_data[1:]:
@@ -212,6 +217,8 @@ def main(argv):
         #   (float(line_data[0]),float(line_data[1]))
         if line[1] in year_dict:
             label_dict[line[1]] = year_dict[line[1]][0:-1]
+            train_label_dict[line[1]] = year_dict[line[1]][0:-1]
+
             song_dict[line[1]] = data
             j += 1
 
@@ -232,6 +239,7 @@ def main(argv):
         #   (float(line_data[0]),float(line_data[1]))
         if line[1] in year_dict:
             label_dict[line[1]] = year_dict[line[1]][0:-1]
+            test_label_dict[line[1]] = year_dict[line[1]][0:-1]
             test_song_dict[line[1]] = data
             j += 1
         #label_dict[line[1]] = year_dict[line[0]]
@@ -248,14 +256,14 @@ def main(argv):
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
 
-    svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
+    svm.svm_main(words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
 
 
-    k_values = [1,3,5,7,9,11,15,25]
-    accuracies = []
-    for k in k_values:
-        accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
-    print(accuracies)
+    # k_values = [1,3,5,7,9,11,15,25]
+    # accuracies = []
+    # for k in k_values:
+    #     accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
+    # print(accuracies)
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
