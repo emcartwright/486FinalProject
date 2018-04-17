@@ -14,7 +14,7 @@ import time
 from sklearn.metrics import precision_recall_curve
 import matplotlib.pyplot as plt
 from sklearn.metrics import average_precision_score
-
+from sklearn.decomposition import LatentDirichletAllocation
 
 
 
@@ -28,7 +28,7 @@ def gen_feature_matrix(song_score_dict,label_dict):
     for song in song_names:
         labels[i] = label_dict[song]
         i +=1
-    print(labels)
+    #print(labels)
     #time.sleep(10)
 
     for i in range(len(song_names)):
@@ -42,7 +42,7 @@ def gen_feature_matrix(song_score_dict,label_dict):
     return feature_matrix, labels
 
 
-def svm_main(song_score_dict,test_score_dict,label_dict,test_label_dict):
+def svm_main(words,test_words,song_score_dict,test_score_dict,label_dict,test_label_dict):
     
 
     #kernels = ['linear', 'poly','rbf' ]
@@ -51,7 +51,12 @@ def svm_main(song_score_dict,test_score_dict,label_dict,test_label_dict):
 
     X_test, y_true = gen_feature_matrix(test_score_dict,test_label_dict)
     
-    svm_diff_kernels(X_train,y_train,X_test, y_true)
+    #svm_diff_kernels(X_train,y_train,X_test, y_true)
+    print('X_train LDA modeling: ')
+    lda(X_train, y_train,list(words))
+
+    print('X_test LDA modeling: ')
+    lda(X_test, y_true,list(test_words))
     #train/test split
     #split_idx = int(len(feature_matrix)*.70)
     #split_idx = int(len(feature_matrix)*1)
@@ -74,13 +79,13 @@ def svm_main(song_score_dict,test_score_dict,label_dict,test_label_dict):
 
 def svm_diff_kernels(X_train,y_train,X_test, y_true):
 
-    classifier = OneVsRestClassifier(SVC(kernel='linear'))
-    classifier.fit(X_train,y_train)
-    y_pred = classifier.predict(X_test)
-    print("y_pred: ", y_pred)
-    print("y_true: ", y_true)
-    accuracy = accuracy_score(y_true,y_pred)
-    print("linear svm accuracy: ",accuracy, "\n")
+    # classifier = OneVsRestClassifier(SVC(kernel='linear'))
+    # classifier.fit(X_train,y_train)
+    # y_pred = classifier.predict(X_test)
+    # print("y_pred: ", y_pred)
+    # print("y_true: ", y_true)
+    # accuracy = accuracy_score(y_true,y_pred)
+    # print("linear svm accuracy: ",accuracy, "\n")
 
     #for precision on songs of 2000s
     #y_pred_2000s =[0 if decade != 2000 else 1 for decade in y_pred ]
@@ -92,6 +97,25 @@ def svm_diff_kernels(X_train,y_train,X_test, y_true):
     class_binary.fit(X_train,y_train_2000s)
     
     y_pred_2000s = class_binary.predict(X_test)
+    print(y_true_2000s)
+    # print('y pred 2000')
+    # print(y_pred_2000s)
+    correct_2000s = 0
+    correct_before2000s = 0
+    total_2000s = 0
+    for i in range(len(y_true_2000s)):
+        if y_true_2000s[i] == 1:
+            total_2000s +=1
+
+        if y_true_2000s[i] == 1 and y_pred_2000s[i] == 1:
+            correct_2000s +=1
+        if y_true_2000s[i] == 0 and y_pred_2000s[i] == 0:
+            correct_before2000s +=1
+
+    total_before2000s = len(y_true_2000s) - total_2000s
+    print("number of 2000s correct: ", float(correct_2000s)/total_2000s)
+    print("number of before 2000s correct: ", float(correct_before2000s)/total_before2000s)
+
     accuracy = accuracy_score(y_true_2000s,y_pred_2000s)
     print("linear binary svm for 2000s accuracy: ", accuracy)
     
@@ -117,29 +141,68 @@ def svm_diff_kernels(X_train,y_train,X_test, y_true):
     plt.show()
     plt.savefig('Precision_Recall.png')
 
-    classifier = OneVsRestClassifier(SVC(kernel='rbf'))
-    classifier.fit(X_train,y_train)
-    y_pred = classifier.predict(X_test)
-    print("rbf y_pred: ", y_pred)
-    print("y_true: ", y_true)
-    accuracy = accuracy_score(y_true,y_pred)
-    print("rbf svm accuracy: ",accuracy, "\n")
+    # classifier = OneVsRestClassifier(SVC(kernel='rbf'))
+    # classifier.fit(X_train,y_train)
+    # y_pred = classifier.predict(X_test)
+    # print("rbf y_pred: ", y_pred)
+    # print("y_true: ", y_true)
+    # accuracy = accuracy_score(y_true,y_pred)
+    # print("rbf svm accuracy: ",accuracy, "\n")
 
-    classifier = OneVsRestClassifier(SVC(kernel='poly'))
-    classifier.fit(X_train,y_train)
-    y_pred = classifier.predict(X_test)
-    print("poly y_pred: ", y_pred)
-    print("y_true: ", y_true)
-    accuracy = accuracy_score(y_true,y_pred)
-    print("polynomial svm accuracy: ",accuracy, "\n")
-
-
+    # classifier = OneVsRestClassifier(SVC(kernel='poly'))
+    # classifier.fit(X_train,y_train)
+    # y_pred = classifier.predict(X_test)
+    # print("poly y_pred: ", y_pred)
+    # print("y_true: ", y_true)
+    # accuracy = accuracy_score(y_true,y_pred)
+    # print("polynomial svm accuracy: ",accuracy, "\n")
 
 
 
 
+'''
+    In program.py, I switched the tfidf function to just return term frequencies
+    because the LDA documentation used term frequencies.
+    If you google LDA sklearn and look at their documentation, the below code is 
+    pretty straight forward.
+    X is a document,word matrix (doc is rows and first index, words are columns and second index)
+
+'''
 
 
+def lda(X,labels,words):
+    lda = LatentDirichletAllocation()
+    lda.fit(X)
+    doc_topic_matrix = lda.transform(X)
+    decade_list = ['192','193','194','195','196','197','198','199','200']
+    topic_probs_per_decade = np.zeros((9,10))
+    
+    i = 0 
+    for decade in decade_list:
+        j = 0
+        #print('working with songs from decade ', decade, '...')
+        for doc in doc_topic_matrix:
+            if decade == labels[j]:
+                #adding probs by decade
+                # print(doc)
+                # time.sleep(3)
+                topic_probs_per_decade[i] += np.array(doc)
+                # print('each column is a topic: ')
+                # print(doc)
+                j+=1
+        print("probs by topic for decade: ", decade)
+        print(topic_probs_per_decade[i])
+        i+=1
+
+    print_top_words(lda, words, 10)
+
+
+def print_top_words(model, feature_names, n_top_words):
+    for topic_idx, topic in enumerate(model.components_):
+        message = "Topic #%d: " % topic_idx
+        message += " ".join([feature_names[i] for i in topic.argsort()[:-n_top_words - 1:-1]])
+        print(message)
+    print()
 
 
 
