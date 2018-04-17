@@ -8,6 +8,7 @@ import time
 import copy
 import math
 import svm
+import matplotlib.pyplot as plt
 
 from collections import Counter
 
@@ -17,7 +18,7 @@ def train_NN(X_train, X_test, label_dict, k):
     total = 0.
     for query_dict in X_test:
         solution = nearestNeighbor(X_test[query_dict], X_train, label_dict, k)
-        print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
+        #print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
         if(solution[0] == label_dict[query_dict]):
             correct += 1
         total += 1
@@ -248,14 +249,27 @@ def main(argv):
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
 
-    svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
+    #svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
 
 
-    k_values = [1,3,5,7,9,11,15,25]
-    accuracies = []
-    for k in k_values:
-        accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
+    k_values = [1,3,5,7,9,15,25,50,75,100]
+    accuracies = [0.404, 0.454, 0.488, 0.532, 0.546, 0.562, 0.566, 0.558, 0.556, 0.556] #[0.404, 0.488, 0.546]
+    #accuracies[8] = train_NN(song_tfidf_dict, test_dict, label_dict, 75)
+    #for k in k_values:
+    #    accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
     print(accuracies)
+
+    plt.step(k_values, accuracies, color='r', where='post')
+    #plt.fill_between(k_values, accuracies, step='post', alpha=0.2,
+    #                 color='b')
+    plt.xlabel('K')
+    plt.ylabel('Accuracy')
+    plt.ylim([.3, 0.7])
+    plt.xlim([0.0, 100.0])
+    plt.title('K vs accuracy for KNN')
+    plt.show()
+    plt.savefig('knn.png')
+
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
