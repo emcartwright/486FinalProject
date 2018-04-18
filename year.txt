@@ -1,0 +1,1000 @@
+round 0
+our prediction is 2002. the correct answer is 1984
+round 1
+our prediction is 1990. the correct answer is 1999
+round 2
+our prediction is 2004. the correct answer is 1994
+round 3
+our prediction is 2002. the correct answer is 2007
+round 4
+our prediction is 1995. the correct answer is 2002
+round 5
+our prediction is 2003. the correct answer is 1991
+round 6
+our prediction is 2005. the correct answer is 2007
+round 7
+our prediction is 1972. the correct answer is 2007
+round 8
+our prediction is 2009. the correct answer is 1984
+round 9
+our prediction is 2003. the correct answer is 2004
+round 10
+our prediction is 2002. the correct answer is 2005
+round 11
+our prediction is 2005. the correct answer is 2003
+round 12
+our prediction is 1991. the correct answer is 2005
+round 13
+our prediction is 1992. the correct answer is 1999
+round 14
+our prediction is 2002. the correct answer is 1971
+round 15
+our prediction is 1985. the correct answer is 1997
+round 16
+our prediction is 2010. the correct answer is 2007
+round 17
+our prediction is 2001. the correct answer is 2004
+round 18
+our prediction is 1975. the correct answer is 2009
+round 19
+our prediction is 2004. the correct answer is 2007
+round 20
+our prediction is 2006. the correct answer is 2000
+round 21
+our prediction is 2003. the correct answer is 2007
+round 22
+our prediction is 1997. the correct answer is 1998
+round 23
+our prediction is 2002. the correct answer is 1998
+round 24
+our prediction is 2010. the correct answer is 2005
+round 25
+our prediction is 1927. the correct answer is 2002
+round 26
+our prediction is 2003. the correct answer is 2005
+round 27
+our prediction is 2009. the correct answer is 1990
+round 28
+our prediction is 2009. the correct answer is 2007
+round 29
+our prediction is 2009. the correct answer is 2008
+round 30
+our prediction is 2003. the correct answer is 1992
+round 31
+our prediction is 2002. the correct answer is 2000
+round 32
+our prediction is 1993. the correct answer is 1975
+round 33
+our prediction is 2006. the correct answer is 1994
+round 34
+our prediction is 2003. the correct answer is 1995
+round 35
+our prediction is 2000. the correct answer is 2008
+round 36
+our prediction is 1997. the correct answer is 1997
+round 37
+our prediction is 2002. the correct answer is 2005
+round 38
+our prediction is 2006. the correct answer is 2007
+round 39
+our prediction is 1967. the correct answer is 2009
+round 40
+our prediction is 1985. the correct answer is 2000
+round 41
+our prediction is 2005. the correct answer is 1992
+round 42
+our prediction is 1997. the correct answer is 2003
+round 43
+our prediction is 2003. the correct answer is 1996
+round 44
+our prediction is 2003. the correct answer is 2006
+round 45
+our prediction is 2003. the correct answer is 1984
+round 46
+our prediction is 1992. the correct answer is 2005
+round 47
+our prediction is 1963. the correct answer is 1978
+round 48
+our prediction is 2000. the correct answer is 2007
+round 49
+our prediction is 2002. the correct answer is 2001
+round 50
+our prediction is 2003. the correct answer is 1991
+round 51
+our prediction is 1995. the correct answer is 2000
+round 52
+our prediction is 1997. the correct answer is 1995
+round 53
+our prediction is 2009. the correct answer is 1984
+round 54
+our prediction is 2009. the correct answer is 2005
+round 55
+our prediction is 1995. the correct answer is 1991
+round 56
+our prediction is 1961. the correct answer is 1991
+round 57
+our prediction is 2002. the correct answer is 1993
+round 58
+our prediction is 2002. the correct answer is 2001
+round 59
+our prediction is 2003. the correct answer is 2002
+round 60
+our prediction is 1958. the correct answer is 1986
+round 61
+our prediction is 1988. the correct answer is 1977
+round 62
+our prediction is 2003. the correct answer is 2001
+round 63
+our prediction is 2004. the correct answer is 1985
+round 64
+our prediction is 2006. the correct answer is 2003
+round 65
+our prediction is 1986. the correct answer is 1997
+round 66
+our prediction is 2003. the correct answer is 2001
+round 67
+our prediction is 1997. the correct answer is 2006
+round 68
+our prediction is 1992. the correct answer is 2003
+round 69
+our prediction is 2009. the correct answer is 2004
+round 70
+our prediction is 2003. the correct answer is 2002
+round 71
+our prediction is 1958. the correct answer is 1987
+round 72
+our prediction is 1979. the correct answer is 1971
+round 73
+our prediction is 2001. the correct answer is 1991
+round 74
+our prediction is 2006. the correct answer is 2005
+round 75
+our prediction is 2009. the correct answer is 2005
+round 76
+our prediction is 2003. the correct answer is 2001
+round 77
+our prediction is 2002. the correct answer is 2009
+round 78
+our prediction is 2005. the correct answer is 2001
+round 79
+our prediction is 2003. the correct answer is 2004
+round 80
+our prediction is 1997. the correct answer is 2010
+round 81
+our prediction is 2000. the correct answer is 1989
+round 82
+our prediction is 1965. the correct answer is 1984
+round 83
+our prediction is 1958. the correct answer is 2000
+round 84
+our prediction is 1998. the correct answer is 2009
+round 85
+our prediction is 2003. the correct answer is 1990
+round 86
+our prediction is 2006. the correct answer is 2003
+round 87
+our prediction is 1985. the correct answer is 1980
+round 88
+our prediction is 2003. the correct answer is 1992
+round 89
+our prediction is 1958. the correct answer is 2002
+round 90
+our prediction is 1992. the correct answer is 1996
+round 91
+our prediction is 2006. the correct answer is 1998
+round 92
+our prediction is 2003. the correct answer is 2000
+round 93
+our prediction is 2006. the correct answer is 2007
+round 94
+our prediction is 2003. the correct answer is 2007
+round 95
+our prediction is 1971. the correct answer is 1974
+round 96
+our prediction is 2001. the correct answer is 2004
+round 97
+our prediction is 2006. the correct answer is 1974
+round 98
+our prediction is 2009. the correct answer is 2007
+round 99
+our prediction is 2009. the correct answer is 2007
+round 100
+our prediction is 2003. the correct answer is 1998
+round 101
+our prediction is 1999. the correct answer is 2008
+round 102
+our prediction is 2003. the correct answer is 2004
+round 103
+our prediction is 1997. the correct answer is 2006
+round 104
+our prediction is 2003. the correct answer is 2003
+round 105
+our prediction is 2002. the correct answer is 2005
+round 106
+our prediction is 2003. the correct answer is 2008
+round 107
+our prediction is 2002. the correct answer is 1998
+round 108
+our prediction is 1995. the correct answer is 1988
+round 109
+our prediction is 2008. the correct answer is 2008
+round 110
+our prediction is 1958. the correct answer is 2006
+round 111
+our prediction is 1999. the correct answer is 2004
+round 112
+our prediction is 1973. the correct answer is 1985
+round 113
+our prediction is 1997. the correct answer is 2001
+round 114
+our prediction is 2005. the correct answer is 1979
+round 115
+our prediction is 2004. the correct answer is 2001
+round 116
+our prediction is 2002. the correct answer is 1997
+round 117
+our prediction is 1997. the correct answer is 2006
+round 118
+our prediction is 2003. the correct answer is 1962
+round 119
+our prediction is 2003. the correct answer is 2003
+round 120
+our prediction is 2003. the correct answer is 2004
+round 121
+our prediction is 1997. the correct answer is 1994
+round 122
+our prediction is 2003. the correct answer is 1990
+round 123
+our prediction is 2002. the correct answer is 1996
+round 124
+our prediction is 2009. the correct answer is 2008
+round 125
+our prediction is 1975. the correct answer is 2007
+round 126
+our prediction is 2000. the correct answer is 2008
+round 127
+our prediction is 2009. the correct answer is 2005
+round 128
+our prediction is 1958. the correct answer is 1995
+round 129
+our prediction is 2003. the correct answer is 2000
+round 130
+our prediction is 1997. the correct answer is 2008
+round 131
+our prediction is 2003. the correct answer is 1996
+round 132
+our prediction is 2003. the correct answer is 2003
+round 133
+our prediction is 1958. the correct answer is 1994
+round 134
+our prediction is 2003. the correct answer is 2009
+round 135
+our prediction is 1983. the correct answer is 1991
+round 136
+our prediction is 2006. the correct answer is 2009
+round 137
+our prediction is 2002. the correct answer is 2000
+round 138
+our prediction is 2003. the correct answer is 2005
+round 139
+our prediction is 2003. the correct answer is 2007
+round 140
+our prediction is 2006. the correct answer is 1991
+round 141
+our prediction is 1961. the correct answer is 1963
+round 142
+our prediction is 1997. the correct answer is 2003
+round 143
+our prediction is 1971. the correct answer is 1976
+round 144
+our prediction is 2002. the correct answer is 2005
+round 145
+our prediction is 2002. the correct answer is 2009
+round 146
+our prediction is 1997. the correct answer is 2004
+round 147
+our prediction is 1992. the correct answer is 1989
+round 148
+our prediction is 1993. the correct answer is 2007
+round 149
+our prediction is 2003. the correct answer is 2003
+round 150
+our prediction is 1979. the correct answer is 2009
+round 151
+our prediction is 1997. the correct answer is 2009
+round 152
+our prediction is 2005. the correct answer is 2005
+round 153
+our prediction is 2003. the correct answer is 1987
+round 154
+our prediction is 2002. the correct answer is 2001
+round 155
+our prediction is 2009. the correct answer is 1999
+round 156
+our prediction is 1989. the correct answer is 2004
+round 157
+our prediction is 2006. the correct answer is 2003
+round 158
+our prediction is 2006. the correct answer is 2005
+round 159
+our prediction is 2005. the correct answer is 1980
+round 160
+our prediction is 2002. the correct answer is 2008
+round 161
+our prediction is 1997. the correct answer is 1992
+round 162
+our prediction is 2003. the correct answer is 2007
+round 163
+our prediction is 1997. the correct answer is 1999
+round 164
+our prediction is 2002. the correct answer is 2006
+round 165
+our prediction is 2003. the correct answer is 2007
+round 166
+our prediction is 1999. the correct answer is 1995
+round 167
+our prediction is 2007. the correct answer is 1969
+round 168
+our prediction is 2002. the correct answer is 2004
+round 169
+our prediction is 2003. the correct answer is 1998
+round 170
+our prediction is 2003. the correct answer is 1996
+round 171
+our prediction is 2007. the correct answer is 2004
+round 172
+our prediction is 1977. the correct answer is 1991
+round 173
+our prediction is 2009. the correct answer is 1984
+round 174
+our prediction is 1984. the correct answer is 2009
+round 175
+our prediction is 2004. the correct answer is 1995
+round 176
+our prediction is 1972. the correct answer is 1988
+round 177
+our prediction is 1994. the correct answer is 1996
+round 178
+our prediction is 1965. the correct answer is 1979
+round 179
+our prediction is 1978. the correct answer is 1986
+round 180
+our prediction is 1997. the correct answer is 2007
+round 181
+our prediction is 2009. the correct answer is 2008
+round 182
+our prediction is 2002. the correct answer is 2001
+round 183
+our prediction is 2003. the correct answer is 2001
+round 184
+our prediction is 1996. the correct answer is 1991
+round 185
+our prediction is 1967. the correct answer is 2006
+round 186
+our prediction is 1984. the correct answer is 1998
+round 187
+our prediction is 1992. the correct answer is 1998
+round 188
+our prediction is 1979. the correct answer is 2002
+round 189
+our prediction is 1994. the correct answer is 1993
+round 190
+our prediction is 2006. the correct answer is 1993
+round 191
+our prediction is 1967. the correct answer is 2006
+round 192
+our prediction is 2009. the correct answer is 2003
+round 193
+our prediction is 1992. the correct answer is 1998
+round 194
+our prediction is 2009. the correct answer is 1967
+round 195
+our prediction is 2003. the correct answer is 1978
+round 196
+our prediction is 2002. the correct answer is 1996
+round 197
+our prediction is 2002. the correct answer is 2006
+round 198
+our prediction is 2003. the correct answer is 1976
+round 199
+our prediction is 2004. the correct answer is 2004
+round 200
+our prediction is 1967. the correct answer is 2001
+round 201
+our prediction is 2005. the correct answer is 1985
+round 202
+our prediction is 1997. the correct answer is 2009
+round 203
+our prediction is 1963. the correct answer is 1988
+round 204
+our prediction is 2003. the correct answer is 2008
+round 205
+our prediction is 1985. the correct answer is 1979
+round 206
+our prediction is 2000. the correct answer is 2006
+round 207
+our prediction is 2009. the correct answer is 2000
+round 208
+our prediction is 2003. the correct answer is 2001
+round 209
+our prediction is 2003. the correct answer is 2006
+round 210
+our prediction is 2002. the correct answer is 2005
+round 211
+our prediction is 1978. the correct answer is 2008
+round 212
+our prediction is 2009. the correct answer is 1999
+round 213
+our prediction is 2006. the correct answer is 2008
+round 214
+our prediction is 1958. the correct answer is 2003
+round 215
+our prediction is 2003. the correct answer is 1998
+round 216
+our prediction is 2003. the correct answer is 1996
+round 217
+our prediction is 1976. the correct answer is 1974
+round 218
+our prediction is 1990. the correct answer is 2004
+round 219
+our prediction is 2001. the correct answer is 1997
+round 220
+our prediction is 2002. the correct answer is 1984
+round 221
+our prediction is 2003. the correct answer is 1990
+round 222
+our prediction is 2004. the correct answer is 2002
+round 223
+our prediction is 2009. the correct answer is 2009
+round 224
+our prediction is 1997. the correct answer is 1997
+round 225
+our prediction is 1999. the correct answer is 1993
+round 226
+our prediction is 1991. the correct answer is 1982
+round 227
+our prediction is 1989. the correct answer is 1991
+round 228
+our prediction is 2006. the correct answer is 1999
+round 229
+our prediction is 2006. the correct answer is 1995
+round 230
+our prediction is 2006. the correct answer is 2006
+round 231
+our prediction is 2006. the correct answer is 2004
+round 232
+our prediction is 2003. the correct answer is 2002
+round 233
+our prediction is 2003. the correct answer is 2002
+round 234
+our prediction is 2009. the correct answer is 2010
+round 235
+our prediction is 1967. the correct answer is 1988
+round 236
+our prediction is 2003. the correct answer is 2000
+round 237
+our prediction is 1999. the correct answer is 2007
+round 238
+our prediction is 1987. the correct answer is 1992
+round 239
+our prediction is 1956. the correct answer is 2004
+round 240
+our prediction is 2009. the correct answer is 2005
+round 241
+our prediction is 2003. the correct answer is 2005
+round 242
+our prediction is 2004. the correct answer is 2008
+round 243
+our prediction is 1983. the correct answer is 2004
+round 244
+our prediction is 2009. the correct answer is 1992
+round 245
+our prediction is 1987. the correct answer is 2005
+round 246
+our prediction is 1987. the correct answer is 2005
+round 247
+our prediction is 2000. the correct answer is 2004
+round 248
+our prediction is 2002. the correct answer is 2007
+round 249
+our prediction is 2003. the correct answer is 1988
+round 250
+our prediction is 2006. the correct answer is 2009
+round 251
+our prediction is 2002. the correct answer is 1993
+round 252
+our prediction is 1997. the correct answer is 2005
+round 253
+our prediction is 2006. the correct answer is 2006
+round 254
+our prediction is 2008. the correct answer is 2006
+round 255
+our prediction is 2003. the correct answer is 1981
+round 256
+our prediction is 2009. the correct answer is 2003
+round 257
+our prediction is 2000. the correct answer is 2003
+round 258
+our prediction is 2007. the correct answer is 2006
+round 259
+our prediction is 1997. the correct answer is 2004
+round 260
+our prediction is 2009. the correct answer is 2005
+round 261
+our prediction is 2009. the correct answer is 2002
+round 262
+our prediction is 2003. the correct answer is 2007
+round 263
+our prediction is 1969. the correct answer is 2008
+round 264
+our prediction is 1983. the correct answer is 1969
+round 265
+our prediction is 1982. the correct answer is 1998
+round 266
+our prediction is 1971. the correct answer is 1974
+round 267
+our prediction is 2003. the correct answer is 1994
+round 268
+our prediction is 2002. the correct answer is 2007
+round 269
+our prediction is 2006. the correct answer is 2007
+round 270
+our prediction is 1981. the correct answer is 1998
+round 271
+our prediction is 2009. the correct answer is 2000
+round 272
+our prediction is 2005. the correct answer is 2003
+round 273
+our prediction is 1984. the correct answer is 1985
+round 274
+our prediction is 1958. the correct answer is 2006
+round 275
+our prediction is 1999. the correct answer is 2004
+round 276
+our prediction is 1996. the correct answer is 2002
+round 277
+our prediction is 2006. the correct answer is 1992
+round 278
+our prediction is 1971. the correct answer is 1994
+round 279
+our prediction is 2003. the correct answer is 1975
+round 280
+our prediction is 2003. the correct answer is 2002
+round 281
+our prediction is 2000. the correct answer is 2000
+round 282
+our prediction is 2005. the correct answer is 1982
+round 283
+our prediction is 1997. the correct answer is 1999
+round 284
+our prediction is 1983. the correct answer is 1999
+round 285
+our prediction is 2006. the correct answer is 1999
+round 286
+our prediction is 2003. the correct answer is 2004
+round 287
+our prediction is 1971. the correct answer is 1997
+round 288
+our prediction is 1975. the correct answer is 1992
+round 289
+our prediction is 1997. the correct answer is 2007
+round 290
+our prediction is 2006. the correct answer is 2005
+round 291
+our prediction is 2006. the correct answer is 1982
+round 292
+our prediction is 2008. the correct answer is 2000
+round 293
+our prediction is 1997. the correct answer is 2007
+round 294
+our prediction is 2002. the correct answer is 2005
+round 295
+our prediction is 2009. the correct answer is 1999
+round 296
+our prediction is 2003. the correct answer is 2010
+round 297
+our prediction is 2003. the correct answer is 2001
+round 298
+our prediction is 1991. the correct answer is 1976
+round 299
+our prediction is 2003. the correct answer is 1991
+round 300
+our prediction is 2003. the correct answer is 1990
+round 301
+our prediction is 2003. the correct answer is 2001
+round 302
+our prediction is 2001. the correct answer is 1998
+round 303
+our prediction is 1999. the correct answer is 2004
+round 304
+our prediction is 1983. the correct answer is 2005
+round 305
+our prediction is 1958. the correct answer is 1999
+round 306
+our prediction is 1985. the correct answer is 2006
+round 307
+our prediction is 1983. the correct answer is 2005
+round 308
+our prediction is 1996. the correct answer is 2006
+round 309
+our prediction is 2003. the correct answer is 1996
+round 310
+our prediction is 2005. the correct answer is 1996
+round 311
+our prediction is 2005. the correct answer is 2004
+round 312
+our prediction is 2005. the correct answer is 1990
+round 313
+our prediction is 1978. the correct answer is 1990
+round 314
+our prediction is 1997. the correct answer is 2005
+round 315
+our prediction is 2003. the correct answer is 1998
+round 316
+our prediction is 2000. the correct answer is 2002
+round 317
+our prediction is 2003. the correct answer is 1997
+round 318
+our prediction is 2006. the correct answer is 1999
+round 319
+our prediction is 1956. the correct answer is 1996
+round 320
+our prediction is 1964. the correct answer is 1997
+round 321
+our prediction is 2003. the correct answer is 1990
+round 322
+our prediction is 2003. the correct answer is 2003
+round 323
+our prediction is 2003. the correct answer is 1982
+round 324
+our prediction is 2000. the correct answer is 2008
+round 325
+our prediction is 2003. the correct answer is 2007
+round 326
+our prediction is 2005. the correct answer is 1975
+round 327
+our prediction is 2006. the correct answer is 1999
+round 328
+our prediction is 2002. the correct answer is 1969
+round 329
+our prediction is 2007. the correct answer is 2005
+round 330
+our prediction is 2009. the correct answer is 1974
+round 331
+our prediction is 1974. the correct answer is 1990
+round 332
+our prediction is 1968. the correct answer is 1982
+round 333
+our prediction is 1967. the correct answer is 2009
+round 334
+our prediction is 2003. the correct answer is 1998
+round 335
+our prediction is 2003. the correct answer is 2003
+round 336
+our prediction is 1959. the correct answer is 1994
+round 337
+our prediction is 1997. the correct answer is 1995
+round 338
+our prediction is 2006. the correct answer is 2001
+round 339
+our prediction is 2006. the correct answer is 2008
+round 340
+our prediction is 2003. the correct answer is 2009
+round 341
+our prediction is 2005. the correct answer is 2008
+round 342
+our prediction is 2003. the correct answer is 1963
+round 343
+our prediction is 2003. the correct answer is 2005
+round 344
+our prediction is 1997. the correct answer is 2001
+round 345
+our prediction is 1973. the correct answer is 1978
+round 346
+our prediction is 1983. the correct answer is 1978
+round 347
+our prediction is 1990. the correct answer is 1980
+round 348
+our prediction is 2009. the correct answer is 2000
+round 349
+our prediction is 2003. the correct answer is 2007
+round 350
+our prediction is 2009. the correct answer is 1988
+round 351
+our prediction is 2004. the correct answer is 1990
+round 352
+our prediction is 2004. the correct answer is 2008
+round 353
+our prediction is 2004. the correct answer is 2008
+round 354
+our prediction is 2005. the correct answer is 2005
+round 355
+our prediction is 2005. the correct answer is 1981
+round 356
+our prediction is 2009. the correct answer is 2007
+round 357
+our prediction is 2009. the correct answer is 2006
+round 358
+our prediction is 2002. the correct answer is 1999
+round 359
+our prediction is 1961. the correct answer is 2005
+round 360
+our prediction is 1992. the correct answer is 1992
+round 361
+our prediction is 2005. the correct answer is 2007
+round 362
+our prediction is 2006. the correct answer is 1997
+round 363
+our prediction is 1989. the correct answer is 2004
+round 364
+our prediction is 1965. the correct answer is 1995
+round 365
+our prediction is 1965. the correct answer is 2007
+round 366
+our prediction is 1996. the correct answer is 2001
+round 367
+our prediction is 2003. the correct answer is 1999
+round 368
+our prediction is 2009. the correct answer is 2004
+round 369
+our prediction is 2003. the correct answer is 1982
+round 370
+our prediction is 1992. the correct answer is 1998
+round 371
+our prediction is 2009. the correct answer is 2009
+round 372
+our prediction is 1997. the correct answer is 1988
+round 373
+our prediction is 2005. the correct answer is 2006
+round 374
+our prediction is 2005. the correct answer is 1994
+round 375
+our prediction is 2005. the correct answer is 1979
+round 376
+our prediction is 2006. the correct answer is 1967
+round 377
+our prediction is 2003. the correct answer is 2006
+round 378
+our prediction is 2007. the correct answer is 2003
+round 379
+our prediction is 1992. the correct answer is 2009
+round 380
+our prediction is 2006. the correct answer is 1998
+round 381
+our prediction is 2002. the correct answer is 1990
+round 382
+our prediction is 1958. the correct answer is 2004
+round 383
+our prediction is 2002. the correct answer is 1996
+round 384
+our prediction is 1997. the correct answer is 1984
+round 385
+our prediction is 2008. the correct answer is 2001
+round 386
+our prediction is 2010. the correct answer is 1984
+round 387
+our prediction is 2004. the correct answer is 2002
+round 388
+our prediction is 2009. the correct answer is 2008
+round 389
+our prediction is 2003. the correct answer is 1997
+round 390
+our prediction is 1997. the correct answer is 2009
+round 391
+our prediction is 2003. the correct answer is 2003
+round 392
+our prediction is 2003. the correct answer is 1988
+round 393
+our prediction is 1967. the correct answer is 2006
+round 394
+our prediction is 2003. the correct answer is 2006
+round 395
+our prediction is 1979. the correct answer is 2002
+round 396
+our prediction is 1965. the correct answer is 1972
+round 397
+our prediction is 2003. the correct answer is 2006
+round 398
+our prediction is 2003. the correct answer is 1988
+round 399
+our prediction is 2005. the correct answer is 2007
+round 400
+our prediction is 2002. the correct answer is 2000
+round 401
+our prediction is 2001. the correct answer is 1997
+round 402
+our prediction is 1985. the correct answer is 2000
+round 403
+our prediction is 1981. the correct answer is 1989
+round 404
+our prediction is 1992. the correct answer is 1999
+round 405
+our prediction is 1956. the correct answer is 1989
+round 406
+our prediction is 2006. the correct answer is 2008
+round 407
+our prediction is 2003. the correct answer is 1963
+round 408
+our prediction is 2005. the correct answer is 1992
+round 409
+our prediction is 2006. the correct answer is 1999
+round 410
+our prediction is 2003. the correct answer is 2004
+round 411
+our prediction is 1971. the correct answer is 2005
+round 412
+our prediction is 1956. the correct answer is 2009
+round 413
+our prediction is 2002. the correct answer is 2004
+round 414
+our prediction is 2004. the correct answer is 2008
+round 415
+our prediction is 1986. the correct answer is 2008
+round 416
+our prediction is 2003. the correct answer is 1993
+round 417
+our prediction is 2009. the correct answer is 2002
+round 418
+our prediction is 2003. the correct answer is 2006
+round 419
+our prediction is 1997. the correct answer is 1997
+round 420
+our prediction is 1968. the correct answer is 2002
+round 421
+our prediction is 1983. the correct answer is 2003
+round 422
+our prediction is 2009. the correct answer is 1996
+round 423
+our prediction is 2003. the correct answer is 2008
+round 424
+our prediction is 2003. the correct answer is 2005
+round 425
+our prediction is 2003. the correct answer is 2002
+round 426
+our prediction is 2002. the correct answer is 1992
+round 427
+our prediction is 1973. the correct answer is 2002
+round 428
+our prediction is 1997. the correct answer is 2003
+round 429
+our prediction is 1965. the correct answer is 1996
+round 430
+our prediction is 2002. the correct answer is 2003
+round 431
+our prediction is 2003. the correct answer is 2004
+round 432
+our prediction is 1958. the correct answer is 1995
+round 433
+our prediction is 2006. the correct answer is 2004
+round 434
+our prediction is 1997. the correct answer is 1998
+round 435
+our prediction is 2002. the correct answer is 2004
+round 436
+our prediction is 1996. the correct answer is 2009
+round 437
+our prediction is 2003. the correct answer is 2006
+round 438
+our prediction is 1996. the correct answer is 2004
+round 439
+our prediction is 2003. the correct answer is 2001
+round 440
+our prediction is 1983. the correct answer is 2000
+round 441
+our prediction is 2002. the correct answer is 1988
+round 442
+our prediction is 1997. the correct answer is 1991
+round 443
+our prediction is 1999. the correct answer is 2010
+round 444
+our prediction is 1997. the correct answer is 1995
+round 445
+our prediction is 2004. the correct answer is 2007
+round 446
+our prediction is 2003. the correct answer is 2006
+round 447
+our prediction is 1997. the correct answer is 1990
+round 448
+our prediction is 2003. the correct answer is 2006
+round 449
+our prediction is 1993. the correct answer is 1996
+round 450
+our prediction is 2003. the correct answer is 2007
+round 451
+our prediction is 1975. the correct answer is 2001
+round 452
+our prediction is 2009. the correct answer is 1969
+round 453
+our prediction is 2002. the correct answer is 1993
+round 454
+our prediction is 2003. the correct answer is 2005
+round 455
+our prediction is 2001. the correct answer is 1999
+round 456
+our prediction is 2003. the correct answer is 1999
+round 457
+our prediction is 1997. the correct answer is 1986
+round 458
+our prediction is 2002. the correct answer is 2005
+round 459
+our prediction is 1978. the correct answer is 2006
+round 460
+our prediction is 1997. the correct answer is 2004
+round 461
+our prediction is 2007. the correct answer is 2000
+round 462
+our prediction is 2003. the correct answer is 2008
+round 463
+our prediction is 2002. the correct answer is 1992
+round 464
+our prediction is 1967. the correct answer is 1979
+round 465
+our prediction is 1996. the correct answer is 1984
+round 466
+our prediction is 2006. the correct answer is 2007
+round 467
+our prediction is 1959. the correct answer is 1994
+round 468
+our prediction is 2009. the correct answer is 2009
+round 469
+our prediction is 2009. the correct answer is 1975
+round 470
+our prediction is 1969. the correct answer is 1997
+round 471
+our prediction is 1958. the correct answer is 1994
+round 472
+our prediction is 2006. the correct answer is 2006
+round 473
+our prediction is 2009. the correct answer is 2009
+round 474
+our prediction is 2000. the correct answer is 2001
+round 475
+our prediction is 2006. the correct answer is 2003
+round 476
+our prediction is 2006. the correct answer is 2005
+round 477
+our prediction is 2004. the correct answer is 1993
+round 478
+our prediction is 1997. the correct answer is 2003
+round 479
+our prediction is 2002. the correct answer is 1989
+round 480
+our prediction is 2003. the correct answer is 2001
+round 481
+our prediction is 2002. the correct answer is 2001
+round 482
+our prediction is 2003. the correct answer is 2006
+round 483
+our prediction is 2005. the correct answer is 1994
+round 484
+our prediction is 1992. the correct answer is 2007
+round 485
+our prediction is 2009. the correct answer is 2002
+round 486
+our prediction is 2003. the correct answer is 1998
+round 487
+our prediction is 1997. the correct answer is 1998
+round 488
+our prediction is 1958. the correct answer is 1995
+round 489
+our prediction is 2005. the correct answer is 2007
+round 490
+our prediction is 1997. the correct answer is 2005
+round 491
+our prediction is 2003. the correct answer is 2009
+round 492
+our prediction is 1992. the correct answer is 1989
+round 493
+our prediction is 2006. the correct answer is 2005
+round 494
+our prediction is 1967. the correct answer is 2003
+round 495
+our prediction is 2006. the correct answer is 1994
+round 496
+our prediction is 2003. the correct answer is 1994
+round 497
+our prediction is 2009. the correct answer is 2005
+round 498
+our prediction is 1956. the correct answer is 2004
+round 499
+our prediction is 2003. the correct answer is 1979
