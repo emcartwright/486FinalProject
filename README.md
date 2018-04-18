@@ -1,5 +1,13 @@
 # 486FinalProject
+
 How to run our program!
+
+First, make sure to have these modules:
+- sklearn
+- numpy
+
+
+
 
 python3 program.py [TRAINING_DATA] [TESTING_DATA] [TRACK_ID_AND_YEAR] [CLASSIFICATION_METHOD] [optional: CLASSIFICATION_SPECIFIC_PARAMETERS]
 
