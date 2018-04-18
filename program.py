@@ -12,17 +12,36 @@ import matplotlib.pyplot as plt
 
 from collections import Counter
 
+#Unused now, but used to create plots
+def plot_NN(X_train, X_test, label_dict):
+    k_values = [1,3,5,7,9,15,25,50,75,100]
+    accuracies = []
+    #Data from previous runs
+    total_accuracies = [0.404, 0.454, 0.488, 0.532, 0.546, 0.562, 0.566, 0.558, 0.556, 0.556] #[0.404, 0.488, 0.546]
+    accuracies_2000s = [0.579136690647482, 0.6798561151079137, 0.7805755395683454, 0.8705035971223022, 0.8992805755395683, 0.960431654676259, 0.9892086330935251, 1.0, 1.0, 1.0]
+    accuracies_1990s = [0.25735294117647056, 0.2426470588235294, 0.18382352941176472, 0.14705882352941177, 0.16176470588235295, 0.10294117647058823, 0.058823529411764705, 0.007352941176470588, 0.0, 0.0]
+
+    for k in k_values:
+        accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
+    print(accuracies)
+
+    plt.step(k_values, accuracies, color='r', where='post')
+    plt.xlabel('K')
+    plt.ylabel('Accuracy')
+    plt.ylim([0.0, 1.05])
+    plt.xlim([0.0, 100.0])
+    plt.title('K vs accuracy for KNN')
+    plt.show()
+    plt.savefig('knn.png')
 
 def train_NN(X_train, X_test, label_dict, k):
     correct = 0.
     total = 0.
     for query_dict in X_test:
         solution = nearestNeighbor(X_test[query_dict], X_train, label_dict, k)
-        #print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
-        if(solution[0] == label_dict[query_dict] and label_dict[query_dict] == '199'):
+        if(solution[0] == label_dict[query_dict]):
             correct += 1
-        if(label_dict[query_dict] == '199'):
-            total += 1
+        total += 1
     print(correct/total)
     return(correct/total)
 
@@ -92,10 +111,6 @@ def nearestNeighbor(query_dict, song_dict, label_dict, k):
         tfidf_vals[song] = curVal
 
     best_vals = Counter(tfidf_vals).most_common(k)
-
-    #print(song_dict[best_vals[0][0]])
-    #print(best_vals[0][1])
-    #print(best_vals[0][0])
 
     new_counter_dict = {}
     curVal = 2000
@@ -182,15 +197,14 @@ def main(argv):
     # Create year dictionary
     id_year_filename = argv[3]
 
-    #print(id_year_filename)
+    classification_method = argv[4]
+
     id_year = open(id_year_filename, "r")
     year_dict = {}
     for line in id_year:
         values = line.split()
         year_dict[values[0]] = values[1]
 
-
-    #print(open(abspath(filename)).readlines()[0])
 
     mxm_data = open(abspath(filename)).readlines()
     test_data = open(abspath(test_filename)).readlines()
@@ -234,52 +248,27 @@ def main(argv):
         line = line.split(',')
         line[-1] = line[-1][:-1]
         non_float_data = [line_data.split(':') for line_data in line[2:]]
-        #print(non_float_data[0][1])
         data = [[int(line_data[0]),int(line_data[1])] for line_data in non_float_data]
-        # for line_data in non_float_data:
-        #   print(line_data)
-        #   (float(line_data[0]),float(line_data[1]))
         if line[1] in year_dict:
             label_dict[line[1]] = year_dict[line[1]][0:-1]
             test_label_dict[line[1]] = year_dict[line[1]][0:-1]
             test_song_dict[line[1]] = data
             j += 1
-        #label_dict[line[1]] = year_dict[line[0]]
-
-    #print(label_dict)
-
-    #test_dict = song_dict.pop('851082')
-
-    #delete me
-    #labels = np.random.randint(1,4,len(song_dict))
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
     test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
-    #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
-    #svm.svm_main(words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
-    #svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
+    if(classification_method == 'rocchio'):
+        cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
 
+    if(classification_method == 'svm'):
+        kernel = argv[5]
+        #svm.svm_main(words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
+        #svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
 
-    k_values = [1,3,5,7,9,15,25,50,75,100]
-    accuracies = [0.404, 0.454, 0.488, 0.532, 0.546, 0.562, 0.566, 0.558, 0.556, 0.556] #[0.404, 0.488, 0.546]
-    accuracies_2000s = [0.579136690647482, 0.6798561151079137, 0.7805755395683454, 0.8705035971223022, 0.8992805755395683, 0.960431654676259, 0.9892086330935251, 1.0, 1.0, 1.0]
-    accuracies_1990s = [0.25735294117647056, 0.2426470588235294, 0.18382352941176472, 0.14705882352941177, 0.16176470588235295, 0.10294117647058823, 0.058823529411764705, 0.007352941176470588, 0.0, 0.0]
-    #accuracies[8] = train_NN(song_tfidf_dict, test_dict, label_dict, 75)
-    #for k in k_values:
-    #    accuracies_1990s.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
-    print(accuracies_1990s)
-
-    plt.step(k_values, accuracies_1990s, color='r', where='post')
-    #plt.fill_between(k_values, accuracies, step='post', alpha=0.2,
-    #                 color='b')
-    plt.xlabel('K')
-    plt.ylabel('Accuracy')
-    plt.ylim([0.0, .5])
-    plt.xlim([0.0, 100.0])
-    plt.title('K vs accuracy of class 1990s for KNN')
-    plt.show()
-    plt.savefig('knn.png')
+    if(classification_method == 'knn'):
+        k_val = int(argv[5])
+        train_NN(song_tfidf_dict, test_dict, label_dict, k_val)
 
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
