@@ -51,7 +51,7 @@ def print_stats(file_name, max_songs):
         print(decade_str, count_str, percent)
 
 # WORDS
-def get_top_words(file_name, num_words):
+def get_top_words(file_name, num_words, use_tfidf):
     if file_name == LABEL_FILE_NAME:
         sys.exit('This file is not compatible with the topics feature.')
     id_map = load_years()
@@ -106,18 +106,19 @@ def get_top_words(file_name, num_words):
                 curr_word_map[word_index] = 0
             curr_word_map[word_index] += 1
 
-    # use tfidf instead of raw tf
-    df_map = dict()
-    for decade, curr_word_map in decade_map.items():
-        for index, freq in curr_word_map.items():
-            if index not in df_map:
-                df_map[index] = 0
-            df_map[index] += 1
-    N = len(decade_map)
-    for decade, curr_word_map in decade_map.items():
-        for index, freq in curr_word_map.items():
-            tfidf = freq * math.log(N / (df_map[index] + 1))
-            curr_word_map[index] = tfidf
+    if use_tfidf:
+        # use tfidf instead of raw tf
+        df_map = dict()
+        for decade, curr_word_map in decade_map.items():
+            for index, freq in curr_word_map.items():
+                if index not in df_map:
+                    df_map[index] = 0
+                df_map[index] += 1
+        N = len(decade_map)
+        for decade, curr_word_map in decade_map.items():
+            for index, freq in curr_word_map.items():
+                tfidf = freq * math.log(N / (df_map[index] + 1))
+                curr_word_map[index] = tfidf
 
     # filter stopwords, sort, and print results
     for decade, curr_word_map in sorted(decade_map.items(), key=lambda x:int(x[0])):
@@ -163,10 +164,10 @@ def main(argv):
     option = argv[2]
     if option == 'stats':
         function = print_stats
-        max_val = max_songs
+        args = [file_name, max_songs]
     elif option == 'words':
         function = get_top_words
-        max_val = max_words
+        args = [file_name, max_words, False]
     else:
         sys.exit("Program options are: 'stats' or 'words'")
 
@@ -174,9 +175,11 @@ def main(argv):
     # for training subset:  2000
     # for testing subset:   500
     if len(argv) >= 4:
-        max_val = int(argv[3])
-
-    function(file_name, max_val)
+        args[1] = int(argv[3])
+    if len(argv) == 5:
+        if 'tfidf' in argv[4]:
+            args[2] = True
+    function(*args)
 
 if __name__ == "__main__":
     main(sys.argv)
