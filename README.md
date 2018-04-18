@@ -12,7 +12,7 @@ First, make sure to have these modules:
 python3 program.py [TRAINING_DATA] [TESTING_DATA] [TRACK_ID_AND_YEAR] [CLASSIFICATION_METHOD] [optional: CLASSIFICATION_SPECIFIC_PARAMETERS]
 
 Word Distribution / Top Words:
-python3 song_insight.py [FILENAME] ['stats' | 'words'] [optional: max_songs | max_words]
+python3 song_insight.py [FILENAME] ['stats' | 'words'] [max_songs | max_words] [optional: 'tfidf']
 
 Examples:
 
