@@ -26,7 +26,7 @@ def train_NN(X_train, X_test, label_dict, k):
     print(correct/total)
     return(correct/total)
 
-def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
+def computeYearsTfidf(year_dict, song_dict, df_dict, N):
     years_tfidf = dict.fromkeys(set(year_dict.values()))
     years_count = dict.fromkeys(set(year_dict.values()))
 
@@ -52,7 +52,41 @@ def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
         if years_count[year] > 0:
             for tup in years_tfidf[year]:
                 tup[1] = tup[1] / years_count[year]
+    print years_tfidf
+    return years_tfidf
 
+# computes cosine similarity for one song
+def cosineSim(query_dict, year_dict, years_tfidf, song_dict, df_dict, N):
+    # checks if years_tfidf is empty so that this is only calculated on the first iteration
+    if not years_tfidf:
+        # calculates the average tfidf for each decade (first iteration only)
+        years_tfidf = dict.fromkeys(set(year_dict.values()))
+        years_count = dict.fromkeys(set(year_dict.values()))
+
+        for year in years_tfidf:
+            years_tfidf[year] = []
+
+        for year in years_count:
+            years_count[year] = 0
+
+        for song in song_dict:
+            for tup in song_dict[song]:
+                year = year_dict[song]
+                idx = []
+                if years_tfidf[year]:
+                    idx = [x for x, y in enumerate(years_tfidf[year]) if y[0] == tup[0]]
+                if not idx:
+                    years_tfidf[year].append(tup)
+                else:
+                    years_tfidf[year][idx[0]][1] += tup[1]
+                years_count[year] += 1
+
+        for year in years_tfidf:
+            if years_count[year] > 0:
+                for tup in years_tfidf[year]:
+                    tup[1] = tup[1] / years_count[year]
+
+    # calculates the tfidf vector for the query song
     for tup in query_dict:
         tup[1] = tfidf(tup[1],df_dict[tup[0]],N,'tfidf')
 
@@ -60,6 +94,7 @@ def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
     cosines = dict.fromkeys(cosines, 0)
     querySum = sum([i[1] ** 2 for i in query_dict])
 
+    # computes cosine similarity
     for year in cosines:
         yearSum = sum([i[1] ** 2 for i in years_tfidf[year]])
         dotProd = 0
@@ -71,8 +106,56 @@ def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
 
         if yearSum:
             cosines[year] = dotProd / (math.sqrt(querySum * yearSum))
+    return max(cosines, key=cosines.get), years_tfidf
 
-    return max(cosines, key=cosines.get)
+# computes cosine similarity for every song in test
+def run_cosineSim(test_song_dict, year_dict, song_tfidf_dict, df_dict, N):
+    numCorrect = 0
+    years_tfidf = {}
+    for song in test_song_dict:
+        answer = year_dict[song]
+        guess, years_tfidf = cosineSim(test_song_dict[song], year_dict, years_tfidf, song_tfidf_dict, df_dict, N)
+        print "our prediction is " + guess[3:] + ". the correct answer is " + answer[3:]
+        if answer[3:] == guess[3:]:
+            numCorrect += 1
+    print float(numCorrect) / len(test_song_dict)
+
+
+
+def train_NN(df_dict, N, song_tfidf_dict, label_dict):
+
+    #print(song_tfidf_dict)
+    #exit(0)
+    #X_train = dict(d.items()[len(d)/2:])
+    #X_test = dict(d.items()[:len(d)/2])
+    X_train = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 0}
+    X_test = {key: value for i, (key, value) in enumerate(song_tfidf_dict.items()) if i % 2 == 1}
+    #print(X_train)
+    #print(X_test)
+    #exit(0)
+    #feature_matrix,labels = svm.gen_feature_matrix(song_tfidf_dict,label_dict)
+
+    #split_idx = int(len(feature_matrix)*.70)
+    #split_idx = int(len(feature_matrix)*1)
+
+
+    #X_train,y_train = feature_matrix[:split_idx],labels[:split_idx]
+    #X_test, y_true = feature_matrix[split_idx:],labels[split_idx:]
+
+
+    correct = 0.
+    total = 0.
+    for query_dict in X_test:
+        solution = nearestNeighbor(X_test[query_dict], df_dict, N, X_train, label_dict, 9)
+        print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
+        if(solution[0] == label_dict[query_dict]):
+            correct += 1
+        total += 1
+        if(total >= 500):
+            break
+    print(correct/total)
+        #five_nearest = nearestNeighbor(query_dict,df_dict,N, song_dict)
+
 
 
 def nearestNeighbor(query_dict, song_dict, label_dict, k):
@@ -189,7 +272,6 @@ def main(argv):
         values = line.split()
         year_dict[values[0]] = values[1]
 
-
     #print(open(abspath(filename)).readlines()[0])
 
     mxm_data = open(abspath(filename)).readlines()
@@ -254,6 +336,7 @@ def main(argv):
     #labels = np.random.randint(1,4,len(song_dict))
 
     df_dict, song_tfidf_dict, word_to_docs, N = train_tfidf(words, song_dict)
+
     test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
@@ -281,6 +364,20 @@ def main(argv):
     plt.show()
     plt.savefig('knn.png')
 
+    #svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
+
+    test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
+    #years_tfidf = computeYearsTfidf(year_dict, song_dict, df_dict, N)
+    run_cosineSim(test_song_dict, year_dict, song_tfidf_dict, df_dict, N)
+
+    #svm.svm_main(song_tfidf_dict,label_dict)
+    '''
+    k_values = [1,3,5,7,9,11,15,25]
+    accuracies = []
+    for k in k_values:
+        accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
+    print(accuracies)
+    '''
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
 
