@@ -2,6 +2,7 @@ import sys, math, heapq
 
 LABEL_FILE_NAME = 'MSD_track_id_and_year.txt'
 
+# HELPERS FOR print_stats
 def handle_mxm_line_gen():
     id_map = load_years()
     def handle_mxm_line(line):
@@ -15,6 +16,7 @@ def handle_label_line(line):
     decade = year[:3]
     return decade
 
+# STATS
 def print_stats(file_name, max_songs):
     decades = dict()
     total = 0
@@ -48,7 +50,8 @@ def print_stats(file_name, max_songs):
         decade_str = '{:}0s: '.format(decade)
         print(decade_str, count_str, percent)
 
-def get_top_topics(file_name, num_words):
+# WORDS
+def get_top_words(file_name, num_words):
     if file_name == LABEL_FILE_NAME:
         sys.exit('This file is not compatible with the topics feature.')
     id_map = load_years()
@@ -159,10 +162,10 @@ def main(argv):
     # specify stats or words
     option = argv[2]
     if option == 'stats':
-        function = print_stats # max_songs
+        function = print_stats
         max_val = max_songs
     elif option == 'words':
-        function = get_top_topics # max_words
+        function = get_top_words
         max_val = max_words
     else:
         sys.exit("Program options are: 'stats' or 'words'")
