@@ -153,7 +153,7 @@ def main(argv):
     # max_test = 500
     max_songs = 175234
     max_words = 20
-    # python3 song_insight.py <filename> <'stats' | 'words'> <max_songs | max_words>
+
     if len(argv) < 2:
         sys.exit("Please specify input file name")
     file_name = argv[1]
