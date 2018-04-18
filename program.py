@@ -343,7 +343,8 @@ def main(argv):
     test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
     if(classification_method == 'rocchio'):
-        cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
+        #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
+        run_cosineSim(test_song_dict, year_dict, song_tfidf_dict, df_dict, N)
 
     if(classification_method == 'svm'):
         kernel = argv[5]
@@ -359,9 +360,6 @@ def main(argv):
 
     #svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
 
-    test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
-    #years_tfidf = computeYearsTfidf(year_dict, song_dict, df_dict, N)
-    run_cosineSim(test_song_dict, year_dict, song_tfidf_dict, df_dict, N)
 
     #svm.svm_main(song_tfidf_dict,label_dict)
     '''
