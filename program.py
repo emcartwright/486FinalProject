@@ -114,15 +114,15 @@ def nearestNeighbor(query_dict, song_dict, label_dict, k):
 
 def tfidf(tf,df,N,weighter):
 
-    # if df == 0:
-    #     return 0
+    if df == 0:
+        return 0
 
-    # arg = float(N) / float(df)
-    # if N == 0: return 0
-    # if weighter == 'tfidf':
-    #     return float(tf)*math.log(arg,10)
+    arg = float(N) / float(df)
+    if N == 0: return 0
+    if weighter == 'tfidf':
+        return float(tf)*math.log(arg,10)
 
-    # return math.log(arg,10)
+    return math.log(arg,10)
     return tf
 
 
@@ -255,8 +255,9 @@ def main(argv):
     test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
-
-    svm.svm_main(words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
+    print('here')
+    if argv[4] == 'svm':
+        svm.svm_main(argv[5],words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
 
 
     # k_values = [1,3,5,7,9,11,15,25]
@@ -269,6 +270,10 @@ def main(argv):
 
     #for line in open(file).read():
 
+
+
+    # if argv[4] == 'svm':
+    #     lda(words,song_dict)
 
 
 
