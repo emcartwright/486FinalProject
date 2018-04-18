@@ -30,7 +30,7 @@ def print_stats(file_name, max_songs):
     file.close()
     max_songs = min(len(lines), max_songs)
     i = 0
-    while total < max_songs:
+    while total < max_songs and i < len(lines):
         line = lines[i]
         i += 1
         decade = handle_line(line)
@@ -50,7 +50,7 @@ def print_stats(file_name, max_songs):
 
 def get_top_topics(file_name, num_words):
     if file_name == LABEL_FILE_NAME:
-        sys.exit('check function')
+        sys.exit('This file is not compatible with the topics feature.')
     id_map = load_years()
     decade_map = dict() # map from decade to dict(top_words)
     # for max_songs in decade, count instances of top words in dict
@@ -150,18 +150,30 @@ def main(argv):
     # max_test = 500
     max_songs = 175234
     max_words = 20
-
+    # python3 song_insight.py <filename> <'stats' | 'words'> <max_songs | max_words>
     if len(argv) < 2:
         sys.exit("Please specify input file name")
     file_name = argv[1]
+    if len(argv) < 3:
+        sys.exit("Please specify program option: 'stats' or 'words'")
+    # specify stats or words
+    option = argv[2]
+    if option == 'stats':
+        function = print_stats # max_songs
+        max_val = max_songs
+    elif option == 'words':
+        function = get_top_topics # max_words
+        max_val = max_words
+    else:
+        sys.exit("Program options are: 'stats' or 'words'")
 
-    if len(argv) == 3:
-        max_songs = int(argv[2])
-    if len(argv) == 4:
-        max_words = int(argv[3])
+    # specify maximum number of songs to analyze
+    # for training subset:  2000
+    # for testing subset:   500
+    if len(argv) >= 4:
+        max_val = int(argv[3])
 
-    # print_stats(file_name, max_songs)
-    get_top_topics(file_name, max_words)
+    function(file_name, max_val)
 
 if __name__ == "__main__":
     main(sys.argv)
