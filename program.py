@@ -19,9 +19,10 @@ def train_NN(X_train, X_test, label_dict, k):
     for query_dict in X_test:
         solution = nearestNeighbor(X_test[query_dict], X_train, label_dict, k)
         #print("solution is " + str(solution[0]) + " label is " + str(label_dict[query_dict]))
-        if(solution[0] == label_dict[query_dict]):
+        if(solution[0] == label_dict[query_dict] and label_dict[query_dict] == '199'):
             correct += 1
-        total += 1
+        if(label_dict[query_dict] == '199'):
+            total += 1
     print(correct/total)
     return(correct/total)
 
@@ -115,15 +116,15 @@ def nearestNeighbor(query_dict, song_dict, label_dict, k):
 
 def tfidf(tf,df,N,weighter):
 
-    # if df == 0:
-    #     return 0
+    if df == 0:
+         return 0
 
-    # arg = float(N) / float(df)
-    # if N == 0: return 0
-    # if weighter == 'tfidf':
-    #     return float(tf)*math.log(arg,10)
+    arg = float(N) / float(df)
+    if N == 0: return 0
+    if weighter == 'tfidf':
+        return float(tf)*math.log(arg,10)
 
-    # return math.log(arg,10)
+    return math.log(arg,10)
     return tf
 
 
@@ -256,25 +257,27 @@ def main(argv):
     test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
     #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
-    svm.svm_main(words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
+    #svm.svm_main(words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
     #svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
 
 
     k_values = [1,3,5,7,9,15,25,50,75,100]
     accuracies = [0.404, 0.454, 0.488, 0.532, 0.546, 0.562, 0.566, 0.558, 0.556, 0.556] #[0.404, 0.488, 0.546]
+    accuracies_2000s = [0.579136690647482, 0.6798561151079137, 0.7805755395683454, 0.8705035971223022, 0.8992805755395683, 0.960431654676259, 0.9892086330935251, 1.0, 1.0, 1.0]
+    accuracies_1990s = [0.25735294117647056, 0.2426470588235294, 0.18382352941176472, 0.14705882352941177, 0.16176470588235295, 0.10294117647058823, 0.058823529411764705, 0.007352941176470588, 0.0, 0.0]
     #accuracies[8] = train_NN(song_tfidf_dict, test_dict, label_dict, 75)
     #for k in k_values:
-    #    accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
-    print(accuracies)
+    #    accuracies_1990s.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
+    print(accuracies_1990s)
 
-    plt.step(k_values, accuracies, color='r', where='post')
+    plt.step(k_values, accuracies_1990s, color='r', where='post')
     #plt.fill_between(k_values, accuracies, step='post', alpha=0.2,
     #                 color='b')
     plt.xlabel('K')
     plt.ylabel('Accuracy')
-    plt.ylim([.3, 0.7])
+    plt.ylim([0.0, .5])
     plt.xlim([0.0, 100.0])
-    plt.title('K vs accuracy for KNN')
+    plt.title('K vs accuracy of class 1990s for KNN')
     plt.show()
     plt.savefig('knn.png')
 
