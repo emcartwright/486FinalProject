@@ -1,6 +1,6 @@
 
 from sklearn.decomposition import LatentDirichletAllocation
-
+import numpy as np
 
 
 
@@ -27,8 +27,8 @@ def gen_feature_matrix(song_score_dict,label_dict):
     return feature_matrix, labels
 
 #song_dict is a tf_dict
-def lda_main(words,song_dict,labels):
-	X,labels = gen_feature_matrix(song_dict,labels)
+def lda_main(words,song_dict,label_dict):
+	X,labels = gen_feature_matrix(song_dict,label_dict)
 	lda(X,labels,list(words))
 
 
