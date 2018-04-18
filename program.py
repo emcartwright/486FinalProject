@@ -13,7 +13,7 @@ from lda import *
 
 from collections import Counter
 
-#Unused now, but used to create plots
+#Unused now, but used to create plots used in our paper
 def plot_NN(X_train, X_test, label_dict):
     k_values = [1,3,5,7,9,15,25,50,75,100]
     accuracies = []
@@ -35,6 +35,7 @@ def plot_NN(X_train, X_test, label_dict):
     plt.show()
     plt.savefig('knn.png')
 
+#Runs the k-nn classification algorithm
 def train_NN(X_train, X_test, label_dict, k):
     correct = 0.
     total = 0.
@@ -142,10 +143,13 @@ def run_cosineSim(test_song_dict, year_dict, song_tfidf_dict, df_dict, N):
 
 def nearestNeighbor(query_dict, song_dict, label_dict, k):
     tfidf_vals = {}
+
+    # FOr each song, check how close it is to the query vector
     for song in song_dict:
         curVal = 0
         counter = 0
         for tup in song_dict[song]:
+            #Iterate through each song-tfidf value for query and actual song
             while(query_dict[counter][0] < tup[0]):
                 counter += 1
                 if(counter >= len(query_dict)):
@@ -156,8 +160,10 @@ def nearestNeighbor(query_dict, song_dict, label_dict, k):
                 curVal += query_dict[counter][1] * tup[1]
         tfidf_vals[song] = curVal
 
+    # Find the nearest k neighbors
     best_vals = Counter(tfidf_vals).most_common(k)
 
+    # Return the classification that is the plurality of nearest neighbors, ties broken by rank
     new_counter_dict = {}
     curVal = 2000
     for val in best_vals:
@@ -170,13 +176,14 @@ def nearestNeighbor(query_dict, song_dict, label_dict, k):
         curVal -=1
 
     #print(Counter(new_counter_dict).most_common(1))
-    # These are the nearest neighbors
+    # This is the plurality of the nearest neighbors
     return (Counter(new_counter_dict).most_common(1)[0])
 
 
 
 def tfidf(tf,df,N,weighter):
 
+    # Calculate tfidf vgiven tf, df, and N
     if df == 0:
          return 0
 
@@ -192,7 +199,7 @@ def tfidf(tf,df,N,weighter):
 
 
 def train_tfidf(words,song_dict):
-
+    #Calculate tfidf vectors for training set
     list1 = [(x,0) for x in range(0,5001)]
     #print(list1)
     df_dict = dict(list1)
@@ -222,6 +229,7 @@ def train_tfidf(words,song_dict):
     #print(word_to_docs)
 
 def test_tfidf(words, song_dict, df_dict, N):
+    # Calculate tfidf vectors for testing set
     song_tfidf_dict = copy.deepcopy(song_dict)
 
     for song in song_tfidf_dict:
@@ -267,6 +275,7 @@ def main(argv):
     test_label_dict = {}
     j = 0
 
+    # Format the training data for later
     for line in mxm_data[1:]:
         if j >= max_train:
             break
@@ -275,9 +284,6 @@ def main(argv):
         non_float_data = [line_data.split(':') for line_data in line[2:]]
         #print(non_float_data[0][1])
         data = [[int(line_data[0]),int(line_data[1])] for line_data in non_float_data]
-        # for line_data in non_float_data:
-        #   print(line_data)
-        #   (float(line_data[0]),float(line_data[1]))
         if line[1] in year_dict:
             label_dict[line[1]] = year_dict[line[1]][0:-1]
             train_label_dict[line[1]] = year_dict[line[1]][0:-1]
@@ -289,6 +295,7 @@ def main(argv):
     test_song_dict = {}
     j = 0
 
+    # Format the testing data for later
     for line in test_data[1:]:
         if j >= max_test:
             break
@@ -306,6 +313,8 @@ def main(argv):
 
     test_dict = test_tfidf(words, test_song_dict, df_dict, len(song_dict))
 
+
+    # Call our classification methods
     if(classification_method == 'rocchio'):
         #cosineDiff(test_dict, year_dict, song_tfidf_dict, df_dict, N)
         run_cosineSim(test_song_dict, year_dict, song_tfidf_dict, df_dict, N)
@@ -314,28 +323,12 @@ def main(argv):
         kernel = argv[5]
         svm.svm_main(kernel,words,test_words,song_tfidf_dict,test_dict,train_label_dict, test_label_dict)
 
-
-
     if(classification_method == 'knn'):
         k_val = int(argv[5])
         train_NN(song_tfidf_dict, test_dict, label_dict, k_val)
 
     if(classification_method == 'lda'):
         lda_main(words,song_dict,label_dict)
-
-
-    #svm.svm_main(song_tfidf_dict,test_dict,label_dict,test_label_dict)
-
-    #svm.svm_main(song_tfidf_dict,label_dict)
-    '''
-    k_values = [1,3,5,7,9,11,15,25]
-    accuracies = []
-    for k in k_values:
-        accuracies.append(train_NN(song_tfidf_dict, test_dict, label_dict, k))
-    print(accuracies)
-    '''
-    #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
-
 
 
 
