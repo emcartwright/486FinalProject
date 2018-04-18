@@ -8,8 +8,11 @@ Examples:
 Rocchio Text Classification:
 python program.py mxm_dataset_train.txt mxm_dataset_test.txt MSD_track_id_and_year.txt rocchio
 
-KNN, k=25
+KNN, k=25:
 python program.py mxm_dataset_train.txt mxm_dataset_test.txt MSD_track_id_and_year.txt knn 25
 
-SVM, linear kernel
+SVM, linear kernel:
 python program.py mxm_dataset_train.txt mxm_dataset_test.txt MSD_track_id_and_year.txt svm linear
+
+LDA:
+python program.py mxm_dataset_train.txt mxm_dataset_test.txt MSD_track_id_and_year.txt lda

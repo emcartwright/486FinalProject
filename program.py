@@ -42,7 +42,7 @@ def train_NN(X_train, X_test, label_dict, k):
         if(solution[0] == label_dict[query_dict]):
             correct += 1
         total += 1
-    print(correct/total)
+    print("KNN accuracy for k = " + str(k) + " is " + str(correct/total))
     return(correct/total)
 
 def cosineDiff(query_dict, year_dict, song_dict, df_dict, N):
@@ -269,6 +269,9 @@ def main(argv):
     if(classification_method == 'knn'):
         k_val = int(argv[5])
         train_NN(song_tfidf_dict, test_dict, label_dict, k_val)
+
+    if(classification_method == 'lda'):
+        lda_main(words,song_dict)
 
     #nearestNeighbor(test_dict, df_dict, N, song_tfidf_dict, label_dict, 1)
 
