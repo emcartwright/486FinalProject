@@ -135,8 +135,8 @@ def run_cosineSim(test_song_dict, year_dict, song_tfidf_dict, df_dict, N):
     for song in test_song_dict:
         answer = year_dict[song]
         guess, years_tfidf = cosineSim(test_song_dict[song], year_dict, years_tfidf, song_tfidf_dict, df_dict, N)
-        print("our prediction is " + guess[3:] + ". the correct answer is " + answer[3:])
-        if answer[3:] == guess[3:]:
+        #print("our prediction is " + guess[:-1] + ". the correct answer is " + answer[:-1])
+        if answer[:-1] == guess[:-1]:
             numCorrect += 1
     print (float(numCorrect) / len(test_song_dict))
 
